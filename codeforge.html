@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="uz">
 <head>
@@ -7,6 +8,7 @@
     <title>CodeForge | Sirli Kodlar</title>
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -17,138 +19,220 @@
             font-family: Arial, sans-serif;
             background: #070a10;
             color: white;
-            min-height: 100vh;
-            overflow-x: hidden;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        /* HEADER */
+        /* ================= HEADER ================= */
 
         header {
-            height: 65px;
-            padding: 0 5%;
+            height: 60px;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
 
+            padding: 0 18px;
+
             background: #0b1018;
+
             border-bottom: 1px solid #202936;
         }
 
         .logo {
-            font-size: 21px;
+            color: #00e5ff;
+            font-size: 20px;
             font-weight: 900;
-            color: #00e5ff;
         }
 
-        .back {
-            color: #9ca6b5;
-            text-decoration: none;
-            font-size: 14px;
-        }
-
-        .back:hover {
-            color: #00e5ff;
-        }
-
-        /* TITLE */
-
-        .top {
-            padding: 25px 5% 15px;
-        }
-
-        .top h1 {
-            font-size: 30px;
-        }
-
-        .top h1 span {
-            color: #00e5ff;
-        }
-
-        .top p {
-            color: #7f8998;
-            margin-top: 7px;
-            font-size: 14px;
-        }
-
-        /* TOOLBAR */
-
-        .toolbar {
-            width: 90%;
-            margin: 10px auto;
-
+        .header-right {
             display: flex;
             align-items: center;
             gap: 10px;
-
-            flex-wrap: wrap;
         }
 
-        button {
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .run {
-            padding: 11px 20px;
-
-            background: #00e5ff;
-            color: #031015;
-
-            border-radius: 8px;
-
-            transition: .25s;
-        }
-
-        .run:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,229,255,.2);
-        }
-
-        .clear {
-            padding: 11px 17px;
-
-            color: #cbd2dc;
-
-            background: #151b24;
-
-            border: 1px solid #273140;
-
-            border-radius: 8px;
-        }
-
-        .status {
-            margin-left: auto;
-            color: #5cff9d;
+        .home {
+            color: #9ca6b5;
+            text-decoration: none;
             font-size: 13px;
         }
 
-        /* EDITOR */
+        .home:hover {
+            color: #00e5ff;
+        }
+
+        /* ================= MAIN ================= */
+
+        .app {
+            height: calc(100vh - 60px);
+
+            display: flex;
+        }
+
+        /* ================= SIDEBAR ================= */
+
+        .sidebar {
+            width: 230px;
+
+            flex-shrink: 0;
+
+            background: #0a0f16;
+
+            border-right: 1px solid #202936;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+        .project {
+            padding: 18px;
+
+            border-bottom: 1px solid #202936;
+
+            color: #8f99a8;
+
+            font-size: 11px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+        .files {
+            padding: 10px;
+        }
+
+        .file {
+            width: 100%;
+
+            padding: 11px 12px;
+
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            border-radius: 7px;
+
+            color: #9da7b5;
+
+            cursor: pointer;
+
+            font-size: 13px;
+
+            transition: .2s;
+        }
+
+        .file:hover {
+            background: #121923;
+            color: white;
+        }
+
+        .file.active {
+            background: rgba(0,229,255,.08);
+            color: #00e5ff;
+        }
+
+        .file-icon {
+            width: 20px;
+            text-align: center;
+        }
+
+        .new-file {
+            margin: auto 12px 12px;
+
+            padding: 10px;
+
+            border: 1px solid #273140;
+
+            border-radius: 7px;
+
+            background: #10161f;
+
+            color: #8f99a8;
+
+            cursor: pointer;
+        }
+
+        .new-file:hover {
+            color: #00e5ff;
+            border-color: #00e5ff;
+        }
+
+        /* ================= WORKSPACE ================= */
 
         .workspace {
-            width: 90%;
-            margin: 15px auto 50px;
+            flex: 1;
 
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-
-            gap: 15px;
-        }
-
-        .panel {
             min-width: 0;
 
-            background: #0b1017;
-
-            border: 1px solid #202936;
-            border-radius: 14px;
-
-            overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
 
-        .panel-head {
+        /* ================= TABS ================= */
+
+        .tabs {
             height: 43px;
+
+            display: flex;
+
+            background: #0c1118;
+
+            border-bottom: 1px solid #202936;
+
+            overflow-x: auto;
+        }
+
+        .tab {
+            min-width: 120px;
+
+            padding: 0 15px;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            color: #788392;
+
+            border-right: 1px solid #202936;
+
+            font-size: 12px;
+
+            cursor: pointer;
+        }
+
+        .tab.active {
+            color: white;
+
+            background: #101720;
+
+            border-top: 2px solid #00e5ff;
+        }
+
+        /* ================= EDITOR + PREVIEW ================= */
+
+        .content {
+            flex: 1;
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            min-height: 0;
+        }
+
+        .editor-panel {
+            min-width: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            border-right: 1px solid #202936;
+        }
+
+        .editor-header,
+        .preview-header {
+            height: 40px;
 
             padding: 0 15px;
 
@@ -156,137 +240,184 @@
             align-items: center;
             justify-content: space-between;
 
-            background: #111720;
+            background: #0e141c;
 
             border-bottom: 1px solid #202936;
-        }
 
-        .panel-title {
-            font-size: 13px;
-            font-weight: bold;
+            font-size: 12px;
         }
 
         .language {
             color: #00e5ff;
-            font-size: 12px;
         }
 
-        textarea {
-            width: 100%;
-            height: 520px;
+        /* ================= EDITOR ================= */
 
-            display: block;
+        textarea {
+            flex: 1;
+
+            width: 100%;
 
             resize: none;
 
-            outline: none;
             border: none;
+            outline: none;
 
             padding: 20px;
 
             background: #080c12;
-            color: #d7dee8;
+
+            color: #d8dee8;
 
             font-family: monospace;
+
             font-size: 14px;
 
             line-height: 1.7;
         }
 
-        textarea::selection {
-            background: rgba(0,229,255,.25);
+        /* ================= PREVIEW ================= */
+
+        .preview-panel {
+            min-width: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            background: white;
         }
 
         iframe {
-            width: 100%;
-            height: 520px;
+            flex: 1;
 
-            display: block;
+            width: 100%;
 
             border: none;
 
             background: white;
         }
 
-        /* BOTTOM */
+        /* ================= TOOLBAR ================= */
 
-        .info {
-            width: 90%;
-            margin: 0 auto 50px;
+        .toolbar {
+            height: 52px;
 
-            padding: 22px;
+            padding: 8px 12px;
 
-            border: 1px solid #202936;
-            border-radius: 14px;
+            display: flex;
+            align-items: center;
 
-            background: rgba(255,255,255,.02);
+            gap: 8px;
+
+            background: #0b1017;
+
+            border-top: 1px solid #202936;
         }
 
-        .info h2 {
-            font-size: 18px;
-            margin-bottom: 10px;
+        button {
+            border: none;
+
+            cursor: pointer;
+
+            font-weight: bold;
+
+            border-radius: 7px;
+
+            padding: 9px 15px;
         }
 
-        .info p {
-            color: #818b9a;
-            font-size: 14px;
-            line-height: 1.7;
+        .run {
+            background: #00e5ff;
+            color: #031015;
         }
 
-        .tip {
-            color: #00e5ff;
+        .run:hover {
+            box-shadow: 0 0 20px rgba(0,229,255,.2);
         }
 
-        /* MOBILE */
+        .clear {
+            background: #151b24;
+
+            border: 1px solid #273140;
+
+            color: #b8c0cb;
+        }
+
+        .clear:hover {
+            color: white;
+        }
+
+        .status {
+            margin-left: auto;
+
+            color: #5cff9d;
+
+            font-size: 12px;
+        }
+
+        /* ================= MOBILE ================= */
 
         @media (max-width: 800px) {
 
-            .workspace {
+            body {
+                overflow: hidden;
+            }
+
+            .sidebar {
+                position: fixed;
+
+                left: -230px;
+                top: 60px;
+                bottom: 0;
+
+                z-index: 100;
+
+                transition: .3s;
+            }
+
+            .sidebar.open {
+                left: 0;
+            }
+
+            .menu-btn {
+                display: block !important;
+            }
+
+            .content {
                 grid-template-columns: 1fr;
             }
 
-            textarea,
-            iframe {
-                height: 420px;
+            .preview-panel {
+                display: none;
             }
 
-            .status {
-                width: 100%;
-                margin-left: 0;
-            }
-        }
-
-        @media (max-width: 450px) {
-
-            header {
-                padding: 0 5%;
+            .editor-panel {
+                border-right: none;
             }
 
             .logo {
-                font-size: 18px;
-            }
-
-            .top h1 {
-                font-size: 26px;
-            }
-
-            .workspace,
-            .toolbar,
-            .info {
-                width: 94%;
-            }
-
-            textarea {
-                font-size: 12px;
+                font-size: 17px;
             }
         }
+
+        .menu-btn {
+            display: none;
+
+            background: #151b24;
+
+            color: #00e5ff;
+
+            border: 1px solid #273140;
+        }
+
     </style>
 </head>
+
 
 <body>
 
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
 
 <header>
 
@@ -294,90 +425,479 @@
         ⚒ CodeForge
     </div>
 
-    <a href="index.html" class="back">
-        ← Bosh sahifa
-    </a>
+    <div class="header-right">
+
+        <button
+            class="menu-btn"
+            onclick="toggleSidebar()"
+        >
+            ☰
+        </button>
+
+        <a
+            href="index.html"
+            class="home"
+        >
+            ← Bosh sahifa
+        </a>
+
+    </div>
 
 </header>
 
 
-<!-- TITLE -->
+<!-- ================= APP ================= -->
 
-<section class="top">
-
-    <h1>
-        <span>Code</span>Forge
-    </h1>
-
-    <p>
-        Kod yozing, ishga tushiring va natijani darhol ko‘ring.
-    </p>
-
-</section>
+<div class="app">
 
 
-<!-- TOOLBAR -->
+    <!-- ================= SIDEBAR ================= -->
 
-<div class="toolbar">
+    <aside class="sidebar" id="sidebar">
 
-    <button class="run" onclick="runCode()">
-        ▶ Run
-    </button>
-
-    <button class="clear" onclick="clearCode()">
-        🗑 Tozalash
-    </button>
-
-    <div class="status" id="status">
-        ● Tayyor
-    </div>
-
-</div>
+        <div class="project">
+            📁 MY PROJECT
+        </div>
 
 
-<!-- WORKSPACE -->
-
-<main class="workspace">
+        <div class="files">
 
 
-    <!-- EDITOR -->
+            <div
+                class="file active"
+                onclick="openFile('index.html')"
+                id="file-index"
+            >
 
-    <section class="panel">
+                <span class="file-icon">📄</span>
 
-        <div class="panel-head">
+                <span>
+                    index.html
+                </span>
 
-            <span class="panel-title">
-                📝 Code Editor
-            </span>
+            </div>
 
-            <span class="language">
-                HTML / CSS / JS
+
+            <div
+                class="file"
+                onclick="openFile('style.css')"
+                id="file-style"
+            >
+
+                <span class="file-icon">🎨</span>
+
+                <span>
+                    style.css
+                </span>
+
+            </div>
+
+
+            <div
+                class="file"
+                onclick="openFile('script.js')"
+                id="file-script"
+            >
+
+                <span class="file-icon">⚡</span>
+
+                <span>
+                    script.js
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            class="new-file"
+            onclick="newFile()"
+        >
+            ＋ New File
+        </button>
+
+
+    </aside>
+
+
+    <!-- ================= WORKSPACE ================= -->
+
+    <main class="workspace">
+
+
+        <!-- TABS -->
+
+        <div class="tabs">
+
+            <div
+                class="tab active"
+                id="tab-index"
+                onclick="openFile('index.html')"
+            >
+                📄 index.html
+            </div>
+
+            <div
+                class="tab"
+                id="tab-style"
+                onclick="openFile('style.css')"
+            >
+                🎨 style.css
+            </div>
+
+            <div
+                class="tab"
+                id="tab-script"
+                onclick="openFile('script.js')"
+            >
+                ⚡ script.js
+            </div>
+
+        </div>
+
+
+        <!-- EDITOR + PREVIEW -->
+
+        <div class="content">
+
+
+            <!-- EDITOR -->
+
+            <section class="editor-panel">
+
+                <div class="editor-header">
+
+                    <span>
+                        Code Editor
+                    </span>
+
+                    <span
+                        class="language"
+                        id="language"
+                    >
+                        HTML
+                    </span>
+
+                </div>
+
+
+                <textarea
+                    id="editor"
+                    spellcheck="false"
+                    oninput="updateCode()"
+                ></textarea>
+
+
+            </section>
+
+
+            <!-- PREVIEW -->
+
+            <section class="preview-panel">
+
+                <div class="preview-header">
+
+                    <span>
+                        Preview
+                    </span>
+
+                    <span>
+                        Live
+                    </span>
+
+                </div>
+
+
+                <iframe
+                    id="preview"
+                    sandbox="allow-scripts"
+                ></iframe>
+
+
+            </section>
+
+
+        </div>
+
+
+        <!-- TOOLBAR -->
+
+        <div class="toolbar">
+
+            <button
+                class="run"
+                onclick="runCode()"
+            >
+                ▶ Run
+            </button>
+
+
+            <button
+                class="clear"
+                onclick="clearCurrentFile()"
+            >
+                🗑 Clear
+            </button>
+
+<button class="save" onclick="downloadProject()">
+    💾 Download
+</button>
+            
+            <span
+                class="status"
+                id="status"
+            >
+                ● Ready
             </span>
 
         </div>
 
-        <textarea id="editor"><!DOCTYPE html>
+
+    </main>
+
+</div>
+
+
+<script>
+
+    /* ================= FILE DATA ================= */
+
+    const files = {
+
+        "index.html": `<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>My Website</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <h1>Salom, CodeForge! 🚀</h1>
+
+    <p>
+        Bu mening birinchi loyiham.
+    </p>
+
+    <button onclick="hello()">
+        Bos
+    </button>
+
+    <script src="script.js"><\/script>
+
+</body>
+
+</html>`,
+
+        "style.css": `body {
+
+    background: #111827;
+
+    color: #00e5ff;
+
+    font-family: Arial;
+
+    text-align: center;
+
+    padding-top: 100px;
+
+}
+
+h1 {
+
+    font-size: 40px;
+
+}
+
+button {
+
+    padding: 12px 25px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #00e5ff;
+
+    cursor: pointer;
+
+}`,
+
+        "script.js": `function hello() {
+
+    alert("CodeForge ishlayapti! 🔥");
+
+}`
+
+    };
+
+
+    let currentFile = "index.html";
+
+
+    /* ================= OPEN FILE ================= */
+
+    function openFile(filename) {
+
+        currentFile = filename;
+
+        document.getElementById("editor").value =
+            files[filename];
+
+        updateActiveFile();
+
+        updateLanguage();
+
+        document.getElementById("status").innerText =
+            "● " + filename + " opened";
+
+        document.getElementById("status").style.color =
+            "#00e5ff";
+
+    }
+
+
+    /* ================= ACTIVE FILE ================= */
+
+    function updateActiveFile() {
+
+        document.querySelectorAll(".file")
+            .forEach(file => {
+
+                file.classList.remove("active");
+
+            });
+
+
+        document.querySelectorAll(".tab")
+            .forEach(tab => {
+
+                tab.classList.remove("active");
+
+            });
+
+
+        if (currentFile === "index.html") {
+
+            document
+                .getElementById("file-index")
+                .classList.add("active");
+
+            document
+                .getElementById("tab-index")
+                .classList.add("active");
+
+        }
+
+
+        if (currentFile === "style.css") {
+
+            document
+                .getElementById("file-style")
+                .classList.add("active");
+
+            document
+                .getElementById("tab-style")
+                .classList.add("active");
+
+        }
+
+
+        if (currentFile === "script.js") {
+
+            document
+                .getElementById("file-script")
+                .classList.add("active");
+
+            document
+                .getElementById("tab-script")
+                .classList.add("active");
+
+        }
+
+    }
+
+
+    /* ================= LANGUAGE ================= */
+
+    function updateLanguage() {
+
+        const language =
+            document.getElementById("language");
+
+
+        if (currentFile === "index.html") {
+
+            language.innerText = "HTML";
+
+        }
+
+        else if (currentFile === "style.css") {
+
+            language.innerText = "CSS";
+
+        }
+
+        else {
+
+            language.innerText = "JavaScript";
+
+        }
+
+    }
+
+
+    /* ================= UPDATE ================= */
+
+    function updateCode() {
+
+        files[currentFile] =
+            document.getElementById("editor").value;
+
+        document.getElementById("status").innerText =
+            "● Unsaved changes";
+
+        document.getElementById("status").style.color =
+            "#ffd166";
+
+    }
+
+
+    /* ================= RUN ================= */
+
+    function runCode() {
+
+        files[currentFile] =
+            document.getElementById("editor").value;
+
+
+        const html =
+            files["index.html"];
+
+        const css =
+            files["style.css"];
+
+        const js =
+            files["script.js"];
+
+
+        const finalCode = `
+
+<!DOCTYPE html>
+
 <html>
 
 <head>
 
 <style>
 
-body {
-    background: #111;
-    color: #00e5ff;
-    font-family: Arial;
-    text-align: center;
-    padding-top: 80px;
-}
-
-button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    background: #00e5ff;
-    cursor: pointer;
-}
+${css}
 
 </style>
 
@@ -385,140 +905,194 @@ button {
 
 <body>
 
-<h1>Hello, CodeForge!</h1>
-
-<p>Bu mening birinchi kodim 🚀</p>
-
-<button onclick="hello()">
-    Bos
-</button>
+${extractBody(html)}
 
 <script>
 
-function hello() {
-    alert("CodeForge ishlayapti! 🔥");
-}
+${js}
 
-</script>
+<\/script>
 
 </body>
 
-</html></textarea>
+</html>
 
-    </section>
-
-
-    <!-- PREVIEW -->
-
-    <section class="panel">
-
-        <div class="panel-head">
-
-            <span class="panel-title">
-                👁 Preview
-            </span>
-
-            <span class="language">
-                Live Result
-            </span>
-
-        </div>
-
-        <iframe
-            id="preview"
-            sandbox="allow-scripts">
-        </iframe>
-
-    </section>
+`;
 
 
-</main>
+        document.getElementById("preview").srcdoc =
+            finalCode;
 
 
-<!-- INFO -->
+        document.getElementById("status").innerText =
+            "● Running";
 
-<section class="info">
-
-    <h2>
-        ⚡ CodeForge qanday ishlaydi?
-    </h2>
-
-    <p>
-        Chap tomondagi editor ichiga HTML, CSS va JavaScript
-        kodlarini yozing. Keyin <span class="tip">Run</span>
-        tugmasini bosing. Natija o‘ng tomondagi Preview
-        oynasida chiqadi.
-    </p>
-
-</section>
-
-
-<script>
-
-    const editor =
-        document.getElementById("editor");
-
-    const preview =
-        document.getElementById("preview");
-
-    const status =
-        document.getElementById("status");
-
-
-    /* RUN CODE */
-
-    function runCode() {
-
-        const code = editor.value;
-
-        preview.srcdoc = code;
-
-        status.innerHTML =
-            "● Kod ishga tushdi";
-
-        status.style.color =
+        document.getElementById("status").style.color =
             "#5cff9d";
+
     }
 
 
-    /* CLEAR */
+    /* ================= BODY EXTRACT ================= */
 
-    function clearCode() {
+    function extractBody(html) {
 
-        editor.value = "";
-
-        preview.srcdoc = "";
-
-        status.innerHTML =
-            "● Editor tozalandi";
-
-        status.style.color =
-            "#ffd166";
-    }
+        const match =
+            html.match(/<body[^>]*>([\\s\\S]*?)<\\/body>/i);
 
 
-    /* AUTO RUN */
+        if (match) {
 
-    editor.addEventListener(
-        "input",
-        function() {
-
-            status.innerHTML =
-                "● O‘zgarishlar saqlandi";
-
-            status.style.color =
-                "#00e5ff";
+            return match[1];
 
         }
-    );
+
+        return html;
+
+    }
 
 
-    /* START */
+    /* ================= CLEAR ================= */
+
+    function clearCurrentFile() {
+
+        files[currentFile] = "";
+
+        document.getElementById("editor").value = "";
+
+        document.getElementById("status").innerText =
+            "● Cleared";
+
+        document.getElementById("status").style.color =
+            "#ffd166";
+
+        runCode();
+
+    }
+
+
+    /* ================= NEW FILE ================= */
+
+    function newFile() {
+
+        const filename =
+            prompt(
+                "Yangi fayl nomini kiriting:",
+                "newfile.html"
+            );
+
+
+        if (!filename) {
+            return;
+        }
+
+
+        if (files[filename]) {
+
+            alert("Bu fayl allaqachon mavjud!");
+
+            return;
+
+        }
+
+
+        files[filename] = "";
+
+        alert(
+            filename +
+            " yaratildi!\n\n" +
+            "Hozircha sahifani yangilamang."
+        );
+
+    }
+
+
+    /* ================= MOBILE SIDEBAR ================= */
+
+    function toggleSidebar() {
+
+        document
+            .getElementById("sidebar")
+            .classList.toggle("open");
+
+    }
+
+
+    /* ================= START ================= */
+
+    openFile("index.html");
 
     runCode();
 
 </script>
+    function downloadProject() {
 
+    const html = files["index.html"];
+    const css = files["style.css"];
+    const js = files["script.js"];
+
+    const finalCode = `
+<!DOCTYPE html>
+<html lang="uz">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>My CodeForge Project</title>
+
+<style>
+
+${css}
+
+</style>
+
+</head>
+
+<body>
+
+${extractBody(html)}
+
+<script>
+
+${js}
+
+<\/script>
+
+</body>
+
+</html>
+`;
+
+    const blob = new Blob(
+        [finalCode],
+        { type: "text/html" }
+    );
+
+    const url =
+        URL.createObjectURL(blob);
+
+    const a =
+        document.createElement("a");
+
+    a.href = url;
+
+    a.download =
+        "codeforge-project.html";
+
+    a.click();
+
+    URL.revokeObjectURL(url);
+
+    document.getElementById("status").innerText =
+        "● Downloaded";
+
+    document.getElementById("status").style.color =
+        "#5cff9d";
+}
 
 </body>
 </html>

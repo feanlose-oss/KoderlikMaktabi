@@ -1,0 +1,2149 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CodeForge — Kurslar</title>
+
+    <meta name="description"
+          content="CodeForge dasturlash kurslari — Python, HTML, CSS, JavaScript, Java, C++, SQL va boshqa tillar.">
+
+    <meta name="theme-color" content="#050807">
+
+    <style>
+
+        /* =========================================
+           RESET
+        ========================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 15% 10%,
+                    rgba(0,255,136,0.10),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(0,255,136,0.07),
+                    transparent 30%
+                ),
+                #050807;
+
+            color: #eef6f1;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =========================================
+           BACKGROUND
+        ========================================= */
+
+        .background {
+            position: fixed;
+            inset: 0;
+
+            z-index: -10;
+
+            pointer-events: none;
+        }
+
+        .grid {
+            position: absolute;
+            inset: 0;
+
+            opacity: 0.14;
+
+            background-image:
+                linear-gradient(
+                    rgba(0,255,136,0.08) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    90deg,
+                    rgba(0,255,136,0.08) 1px,
+                    transparent 1px
+                );
+
+            background-size: 40px 40px;
+
+            animation:
+                gridMove 18s linear infinite;
+        }
+
+        @keyframes gridMove {
+
+            from {
+                transform:
+                    translateY(0);
+            }
+
+            to {
+                transform:
+                    translateY(40px);
+            }
+
+        }
+
+
+        .orb {
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(0,255,136,0.06);
+
+            filter: blur(90px);
+        }
+
+        .orb.one {
+            top: -180px;
+            left: -120px;
+        }
+
+        .orb.two {
+            right: -180px;
+            bottom: -150px;
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        header {
+            position: sticky;
+
+            top: 0;
+
+            z-index: 1000;
+
+            height: 70px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding:
+                0 6%;
+
+            background:
+                rgba(5,8,7,0.82);
+
+            border-bottom:
+                1px solid
+                rgba(0,255,136,0.15);
+
+            backdrop-filter:
+                blur(16px);
+        }
+
+
+        .logo {
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            font-size: 21px;
+
+            font-weight: 900;
+
+            letter-spacing: 1px;
+        }
+
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            color: #00ff88;
+
+            border:
+                1px solid
+                rgba(0,255,136,0.30);
+
+            background:
+                rgba(0,255,136,0.06);
+
+            box-shadow:
+                0 0 20px
+                rgba(0,255,136,0.08);
+        }
+
+
+        .logo span {
+            color: #00ff88;
+        }
+
+
+        .menu-btn {
+            width: 44px;
+            height: 44px;
+
+            border:
+                1px solid
+                rgba(0,255,136,0.20);
+
+            border-radius: 12px;
+
+            background:
+                rgba(0,255,136,0.05);
+
+            color: #00ff88;
+
+            font-size: 25px;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+
+        .menu-btn:hover {
+            transform: scale(1.05);
+
+            background:
+                rgba(0,255,136,0.12);
+        }
+
+
+        /* =========================================
+           SIDE MENU
+        ========================================= */
+
+        .side-menu {
+            position: fixed;
+
+            top: 0;
+
+            right: -310px;
+
+            width: 300px;
+
+            height: 100vh;
+
+            z-index: 3000;
+
+            padding:
+                90px 22px 25px;
+
+            background:
+                rgba(6,11,9,0.98);
+
+            border-left:
+                1px solid
+                rgba(0,255,136,0.18);
+
+            box-shadow:
+                -20px 0 60px
+                rgba(0,0,0,0.50);
+
+            backdrop-filter:
+                blur(20px);
+
+            transition:
+                right 0.35s ease;
+
+            overflow-y: auto;
+        }
+
+
+        .side-menu.active {
+            right: 0;
+        }
+
+
+        .close-menu {
+            position: absolute;
+
+            top: 22px;
+            right: 22px;
+
+            width: 42px;
+            height: 42px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            border-radius: 12px;
+
+            background:
+                rgba(255,255,255,0.04);
+
+            color: white;
+
+            font-size: 23px;
+
+            cursor: pointer;
+        }
+
+
+        .menu-title {
+            margin-bottom: 20px;
+
+            color: #00ff88;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+        }
+
+
+        .menu-link {
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-bottom: 8px;
+
+            border:
+                1px solid transparent;
+
+            border-radius: 13px;
+
+            color: #dce8e1;
+
+            background:
+                rgba(255,255,255,0.025);
+
+            transition: 0.25s;
+        }
+
+
+        .menu-link:hover {
+            color: #00ff88;
+
+            border-color:
+                rgba(0,255,136,0.18);
+
+            background:
+                rgba(0,255,136,0.06);
+
+            transform:
+                translateX(-4px);
+        }
+
+
+        .overlay {
+            position: fixed;
+
+            inset: 0;
+
+            z-index: 2500;
+
+            background:
+                rgba(0,0,0,0.65);
+
+            opacity: 0;
+
+            visibility: hidden;
+
+            transition: 0.3s;
+        }
+
+
+        .overlay.active {
+            opacity: 1;
+
+            visibility: visible;
+        }
+
+
+        /* =========================================
+           HERO
+        ========================================= */
+
+        .hero {
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding:
+                80px 6% 55px;
+
+            text-align: center;
+        }
+
+
+        .badge {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding:
+                9px 15px;
+
+            margin-bottom: 22px;
+
+            border:
+                1px solid
+                rgba(0,255,136,0.22);
+
+            border-radius: 50px;
+
+            background:
+                rgba(0,255,136,0.06);
+
+            color: #00ff88;
+
+            font-size: 12px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        .dot {
+            width: 7px;
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #00ff88;
+
+            box-shadow:
+                0 0 12px
+                #00ff88;
+        }
+
+
+        .hero h1 {
+            font-size:
+                clamp(42px, 8vw, 75px);
+
+            line-height: 1;
+
+            letter-spacing: -3px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .hero h1 span {
+            color: #00ff88;
+
+            text-shadow:
+                0 0 30px
+                rgba(0,255,136,0.25);
+        }
+
+
+        .hero p {
+            max-width: 700px;
+
+            margin: auto;
+
+            color: #94a49b;
+
+            line-height: 1.7;
+
+            font-size: 16px;
+        }
+
+
+        /* =========================================
+           SEARCH
+        ========================================= */
+
+        .search-box {
+            max-width: 650px;
+
+            margin:
+                30px auto 0;
+
+            position: relative;
+        }
+
+
+        .search-box input {
+            width: 100%;
+
+            padding:
+                17px 20px 17px 50px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.10);
+
+            border-radius: 15px;
+
+            outline: none;
+
+            background:
+                rgba(255,255,255,0.04);
+
+            color: white;
+
+            font-size: 15px;
+
+            transition: 0.25s;
+        }
+
+
+        .search-box input:focus {
+            border-color:
+                rgba(0,255,136,0.45);
+
+            box-shadow:
+                0 0 25px
+                rgba(0,255,136,0.06);
+        }
+
+
+        .search-icon {
+            position: absolute;
+
+            left: 18px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            font-size: 19px;
+
+            color: #00ff88;
+        }
+
+
+        /* =========================================
+           FILTERS
+        ========================================= */
+
+        .filters {
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding:
+                10px 6% 35px;
+
+            display: flex;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 9px;
+        }
+
+
+        .filter {
+            padding:
+                10px 15px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            border-radius: 50px;
+
+            background:
+                rgba(255,255,255,0.03);
+
+            color: #9eada5;
+
+            cursor: pointer;
+
+            transition: 0.25s;
+        }
+
+
+        .filter:hover,
+        .filter.active {
+            color: #001b0d;
+
+            background: #00ff88;
+
+            border-color: #00ff88;
+        }
+
+
+        /* =========================================
+           COURSE GRID
+        ========================================= */
+
+        .courses {
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding:
+                20px 6% 90px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .course {
+            position: relative;
+
+            padding: 25px;
+
+            min-height: 290px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
+
+            border-radius: 21px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.045),
+                    rgba(255,255,255,0.012)
+                );
+
+            overflow: hidden;
+
+            transition:
+                transform 0.3s,
+                border-color 0.3s,
+                box-shadow 0.3s;
+        }
+
+
+        .course::before {
+            content: "";
+
+            position: absolute;
+
+            width: 170px;
+            height: 170px;
+
+            right: -80px;
+            top: -80px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(0,255,136,0.05);
+
+            filter: blur(15px);
+        }
+
+
+        .course:hover {
+            transform:
+                translateY(-7px);
+
+            border-color:
+                rgba(0,255,136,0.28);
+
+            box-shadow:
+                0 20px 45px
+                rgba(0,0,0,0.25);
+        }
+
+
+        .course-icon {
+            width: 58px;
+            height: 58px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 18px;
+
+            border-radius: 16px;
+
+            background:
+                rgba(0,255,136,0.08);
+
+            border:
+                1px solid
+                rgba(0,255,136,0.10);
+
+            font-size: 29px;
+        }
+
+
+        .level {
+            display: inline-block;
+
+            width: fit-content;
+
+            padding:
+                5px 9px;
+
+            margin-bottom: 10px;
+
+            border-radius: 50px;
+
+            color: #00ff88;
+
+            background:
+                rgba(0,255,136,0.07);
+
+            font-size: 10px;
+
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        .course h2 {
+            margin-bottom: 10px;
+
+            font-size: 23px;
+        }
+
+
+        .course p {
+            color: #899991;
+
+            font-size: 14px;
+
+            line-height: 1.65;
+        }
+
+
+        .course-bottom {
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            margin-top: auto;
+
+            padding-top: 20px;
+        }
+
+
+        .lessons {
+            color: #718079;
+
+            font-size: 12px;
+        }
+
+
+        .start {
+            padding:
+                10px 14px;
+
+            border:
+                1px solid
+                rgba(0,255,136,0.20);
+
+            border-radius: 11px;
+
+            color: #00ff88;
+
+            background:
+                rgba(0,255,136,0.05);
+
+            font-size: 13px;
+
+            font-weight: bold;
+
+            transition: 0.25s;
+        }
+
+
+        .start:hover {
+            color: #001b0d;
+
+            background: #00ff88;
+        }
+
+
+        /* =========================================
+           ROADMAP
+        ========================================= */
+
+        .roadmap {
+            max-width: 1150px;
+
+            margin: auto;
+
+            padding:
+                20px 6% 80px;
+        }
+
+
+        .roadmap-title {
+            text-align: center;
+
+            margin-bottom: 30px;
+        }
+
+
+        .roadmap-title small {
+            color: #00ff88;
+
+            font-size: 11px;
+
+            font-weight: bold;
+
+            letter-spacing: 2px;
+        }
+
+
+        .roadmap-title h2 {
+            margin-top: 8px;
+
+            font-size: 35px;
+        }
+
+
+        .steps {
+            display: grid;
+
+            grid-template-columns:
+                repeat(4, 1fr);
+
+            gap: 12px;
+        }
+
+
+        .step {
+            padding: 22px;
+
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            border-radius: 17px;
+
+            background:
+                rgba(255,255,255,0.025);
+        }
+
+
+        .step-number {
+            color: #00ff88;
+
+            font-size: 12px;
+
+            font-weight: bold;
+        }
+
+
+        .step h3 {
+            margin:
+                10px 0;
+
+            font-size: 17px;
+        }
+
+
+        .step p {
+            color: #84938b;
+
+            font-size: 13px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =========================================
+           CTA
+        ========================================= */
+
+        .cta {
+            max-width: 1050px;
+
+            margin:
+                10px auto 80px;
+
+            padding:
+                55px 25px;
+
+            text-align: center;
+
+            border:
+                1px solid
+                rgba(0,255,136,0.18);
+
+            border-radius: 25px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(0,255,136,0.09),
+                    transparent 65%
+                ),
+                rgba(255,255,255,0.02);
+        }
+
+
+        .cta h2 {
+            font-size:
+                clamp(28px, 5vw, 45px);
+
+            margin-bottom: 13px;
+        }
+
+
+        .cta p {
+            max-width: 600px;
+
+            margin: auto;
+
+            color: #8c9c93;
+
+            line-height: 1.7;
+        }
+
+
+        .cta a {
+            display: inline-flex;
+
+            margin-top: 25px;
+
+            padding:
+                14px 21px;
+
+            border-radius: 13px;
+
+            color: #001b0d;
+
+            background: #00ff88;
+
+            font-weight: bold;
+
+            transition: 0.25s;
+        }
+
+
+        .cta a:hover {
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 0 30px
+                rgba(0,255,136,0.22);
+        }
+
+
+        /* =========================================
+           FOOTER
+        ========================================= */
+
+        footer {
+            padding:
+                35px 6%;
+
+            text-align: center;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            color: #65746c;
+
+            font-size: 13px;
+        }
+
+
+        footer strong {
+            color: #00ff88;
+        }
+
+
+        /* =========================================
+           RESPONSIVE
+        ========================================= */
+
+        @media (max-width: 900px) {
+
+            .courses {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns:
+                    repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            header {
+                padding:
+                    0 18px;
+            }
+
+            .hero {
+                padding:
+                    65px 20px 40px;
+            }
+
+            .hero h1 {
+                letter-spacing: -2px;
+            }
+
+            .courses {
+                grid-template-columns: 1fr;
+
+                padding:
+                    15px 20px 70px;
+            }
+
+            .filters {
+                padding:
+                    10px 20px 25px;
+            }
+
+            .roadmap {
+                padding:
+                    10px 20px 60px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .cta {
+                margin:
+                    0 20px 60px;
+            }
+
+            .side-menu {
+                width: 285px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+<!-- =========================================
+     BACKGROUND
+========================================= -->
+
+<div class="background">
+
+    <div class="grid"></div>
+
+    <div class="orb one"></div>
+
+    <div class="orb two"></div>
+
+</div>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header>
+
+    <a href="index.html" class="logo">
+
+        <div class="logo-icon">
+            &lt;/&gt;
+        </div>
+
+        Code<span>Forge</span>
+
+    </a>
+
+
+    <button
+        class="menu-btn"
+        onclick="openMenu()">
+
+        ☰
+
+    </button>
+
+</header>
+
+
+<!-- =========================================
+     OVERLAY
+========================================= -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeMenu()">
+</div>
+
+
+<!-- =========================================
+     SIDE MENU
+========================================= -->
+
+<aside
+    class="side-menu"
+    id="sideMenu">
+
+
+    <button
+        class="close-menu"
+        onclick="closeMenu()">
+
+        ×
+
+    </button>
+
+
+    <div class="menu-title">
+
+        CODEFORGE MENU
+
+    </div>
+
+
+    <a
+        class="menu-link"
+        href="index.html">
+
+        🏠
+
+        <span>
+            Bosh sahifa
+        </span>
+
+    </a>
+
+
+    <a
+        class="menu-link"
+        href="kurslar.html">
+
+        📚
+
+        <span>
+            Kurslar
+        </span>
+
+    </a>
+
+
+    <a
+        class="menu-link"
+        href="sirli-kodlar.html">
+
+        🔐
+
+        <span>
+            Sirli kodlar
+        </span>
+
+    </a>
+
+
+    <a
+        class="menu-link"
+        href="terminal.html">
+
+        💻
+
+        <span>
+            Terminal
+        </span>
+
+    </a>
+
+
+    <a
+        class="menu-link"
+        href="loyihalar.html">
+
+        🚀
+
+        <span>
+            Loyihalar
+        </span>
+
+    </a>
+
+
+    <a
+        class="menu-link"
+        href="sertifikat.html">
+
+        🎓
+
+        <span>
+            Sertifikat
+        </span>
+
+    </a>
+
+
+    <a
+        class="menu-link"
+        href="haqida.html">
+
+        ℹ️
+
+        <span>
+            Biz haqimizda
+        </span>
+
+    </a>
+
+</aside>
+
+
+<!-- =========================================
+     HERO
+========================================= -->
+
+<section class="hero">
+
+    <div class="badge">
+
+        <span class="dot"></span>
+
+        CODEFORGE LEARNING
+
+    </div>
+
+
+    <h1>
+
+        Dasturlashni
+
+        <span>
+            o‘rganing.
+        </span>
+
+    </h1>
+
+
+    <p>
+
+        O‘zingizga mos dasturlash tilini tanlang,
+        asoslardan boshlang va real loyihalar
+        yaratish darajasigacha yetib boring.
+
+    </p>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <span class="search-icon">
+            🔎
+        </span>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Kurs qidirish...">
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     FILTERS
+========================================= -->
+
+<div class="filters">
+
+    <button
+        class="filter active"
+        onclick="filterCourses('all', this)">
+
+        Barchasi
+
+    </button>
+
+
+    <button
+        class="filter"
+        onclick="filterCourses('web', this)">
+
+        Web
+
+    </button>
+
+
+    <button
+        class="filter"
+        onclick="filterCourses('programming', this)">
+
+        Programming
+
+    </button>
+
+
+    <button
+        class="filter"
+        onclick="filterCourses('database', this)">
+
+        Database
+
+    </button>
+
+
+    <button
+        class="filter"
+        onclick="filterCourses('advanced', this)">
+
+        Advanced
+
+    </button>
+
+</div>
+
+
+<!-- =========================================
+     COURSES
+========================================= -->
+
+<div
+    class="courses"
+    id="courses">
+
+
+    <!-- PYTHON -->
+
+    <article
+        class="course"
+        data-category="programming"
+        data-name="python">
+
+        <div class="course-icon">
+            🐍
+        </div>
+
+
+        <span class="level">
+            BEGINNER → ADVANCED
+        </span>
+
+
+        <h2>
+            Python
+        </h2>
+
+
+        <p>
+
+            Dasturlashni noldan o‘rganish uchun
+            eng qulay tillardan biri. Sintaksis,
+            o‘zgaruvchilar, shartlar, sikllar,
+            funksiyalar va loyihalar.
+
+        </p>
+
+
+        <div class="course-bottom">
+
+            <span class="lessons">
+                📚 20+ dars
+            </span>
+
+
+            <a
+                href="python.html"
+                class="start">
+
+                Boshlash →
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- HTML CSS -->
+
+    <article
+        class="course"
+        data-category="web"
+        data-name="html css">
+
+        <div class="course-icon">
+            🌐
+        </div>
+
+
+        <span class="level">
+            BEGINNER
+        </span>
+
+
+        <h2>
+            HTML & CSS
+        </h2>
+
+
+        <p>
+
+            Web-saytlarning asosiy tuzilishini
+            yaratish, dizayn berish, responsive
+            layout va zamonaviy UI yaratish.
+
+        </p>
+
+
+        <div class="course-bottom">
+
+            <span class="lessons">
+                📚 18+ dars
+            </span>
+
+
+            <a
+                href="html-css.html"
+                class="start">
+
+                Boshlash →
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- JAVASCRIPT -->
+
+    <article
+        class="course"
+        data-category="web"
+        data-name="javascript">
+
+        <div class="course-icon">
+            ⚡
+        </div>
+
+
+        <span class="level">
+            BEGINNER → ADVANCED
+        </span>
+
+
+        <h2>
+            JavaScript
+        </h2>
+
+
+        <p>
+
+            Web-saytlarni interaktiv qilish,
+            DOM, eventlar, funksiyalar, API
+            va zamonaviy JavaScript.
+
+        </p>
+
+
+        <div class="course-bottom">
+
+            <span class="lessons">
+                📚 25+ dars
+            </span>
+
+
+            <a
+                href="javascript.html"
+                class="start">
+
+                Boshlash →
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- JAVA -->
+
+    <article
+        class="course"
+        data-category="programming"
+        data-name="java">
+
+        <div class="course-icon">
+            ☕
+        </div>
+
+
+        <span class="level">
+            INTERMEDIATE
+        </span>
+
+
+        <h2>
+            Java
+        </h2>
+
+
+        <p>
+
+            OOP, class, object, inheritance,
+            methods va Java dasturlarini
+            yaratish asoslari.
+
+        </p>
+
+
+        <div class="course-bottom">
+
+            <span class="lessons">
+                📚 20+ dars
+            </span>
+
+
+            <a
+                href="java.html"
+                class="start">
+
+                Boshlash →
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- C++ -->
+
+    <article
+        class="course"
+        data-category="advanced"
+        data-name="c++ cpp">
+
+        <div class="course-icon">
+            ⚙️
+        </div>
+
+
+        <span class="level">
+            INTERMEDIATE
+        </span>
+
+
+        <h2>
+            C++
+        </h2>
+
+
+        <p>
+
+            Kuchli va tezkor dasturlar yaratish,
+            variable, function, OOP, pointer
+            va boshqa asosiy tushunchalar.
+
+        </p>
+
+
+        <div class="course-bottom">
+
+            <span class="lessons">
+                📚 22+ dars
+            </span>
+
+
+            <a
+                href="cpp.html"
+                class="start">
+
+                Boshlash →
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- SQL -->
+
+    <article
+        class="course"
+        data-category="database"
+        data-name="sql database">
+
+        <div class="course-icon">
+            🗄️
+        </div>
+
+
+        <span class="level">
+            BEGINNER
+        </span>
+
+
+        <h2>
+            SQL
+        </h2>
+
+
+        <p>
+
+            Database bilan ishlash,
+            SELECT, INSERT, UPDATE, DELETE,
+            JOIN va ma'lumotlar bazasi asoslari.
+
+        </p>
+
+
+        <div class="course-bottom">
+
+            <span class="lessons">
+                📚 15+ dars
+            </span>
+
+
+            <a
+                href="sql.html"
+                class="start">
+
+                Boshlash →
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- PHP -->
+
+    <article
+        class="course"
+        data-category="web"
+        data-name="php">
+
+        <div class="course-icon">
+            🐘
+        </div>
+
+
+        <span class="level">
+            INTERMEDIATE
+        </span>
+
+
+        <h2>
+            PHP
+        </h2>
+
+
+        <p>
+
+            Server-side dasturlash, formalar,
+            backend asoslari va database bilan
+            ishlash.
+
+        </p>
+
+
+        <div class="course-bottom">
+
+            <span class="lessons">
+                📚 18+ dars
+            </span>
+
+
+            <a
+                href="php.html"
+                class="start">
+
+                Boshlash →
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- GIT -->
+
+    <article
+        class="course"
+        data-category="advanced"
+        data-name="git github">
+
+        <div class="course-icon">
+            🔧
+        </div>
+
+
+        <span class="level">
+            BEGINNER
+        </span>
+
+
+        <h2>
+            Git & GitHub
+        </h2>
+
+
+        <p>
+
+            Kodni versiyalash, repository yaratish,
+            commit, branch, merge va GitHub
+            bilan ishlash.
+
+        </p>
+
+
+        <div class="course-bottom">
+
+            <span class="lessons">
+                📚 12+ dars
+            </span>
+
+
+            <a
+                href="git.html"
+                class="start">
+
+                Boshlash →
+
+            </a>
+
+        </div>
+
+    </article>
+
+
+    <!-- LINUX -->
+
+    <article
+        class="course"
+        data-category="advanced"
+        data-name="linux terminal">
+
+        <div class="course-icon">
+            🐧
+        </div>
+
+
+        <span class="level">
+            INTERMEDIATE
+        </span>
+
+
+        <h2>
+            Linux
+        </h2>
+
+
+        <p>
+
+            Terminal, Linux buyruqlari,
+            fayllar, papkalar, permissionlar
+            va dasturchilar uchun Linux.
+
+        </p>
+
+
+        <div class="course-bottom">
+
+            <span class="lessons">
+                📚 16+ dars
+            </span>
+
+
+            <a
+                href="linux.html"
+                class="start">
+
+                Boshlash →
+
+            </a>
+
+        </div>
+
+    </article>
+
+</div>
+
+
+<!-- =========================================
+     ROADMAP
+========================================= -->
+
+<section class="roadmap">
+
+    <div class="roadmap-title">
+
+        <small>
+            CODEFORGE ROADMAP
+        </small>
+
+        <h2>
+            Qanday o‘rganamiz?
+        </h2>
+
+    </div>
+
+
+    <div class="steps">
+
+
+        <div class="step">
+
+            <span class="step-number">
+                01
+            </span>
+
+            <h3>
+                Asoslarni o‘rgan
+            </h3>
+
+            <p>
+                Dasturlash tilining asosiy
+                tushunchalarini o‘zlashtir.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <span class="step-number">
+                02
+            </span>
+
+            <h3>
+                Kod yoz
+            </h3>
+
+            <p>
+                Har bir mavzudan keyin
+                amaliy kod yoz.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <span class="step-number">
+                03
+            </span>
+
+            <h3>
+                Loyiha yarat
+            </h3>
+
+            <p>
+                O‘rgangan bilimlaringni
+                real loyihalarda sinab ko‘r.
+            </p>
+
+        </div>
+
+
+        <div class="step">
+
+            <span class="step-number">
+                04
+            </span>
+
+            <h3>
+                Sertifikat ol
+            </h3>
+
+            <p>
+                Kursni yakunla va
+                CodeForge sertifikatini ol.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CTA
+========================================= -->
+
+<section class="cta">
+
+    <h2>
+        Qaysi tildan boshlaysiz? 🚀
+    </h2>
+
+
+    <p>
+
+        Agar dasturlashni endi boshlayotgan
+        bo‘lsangiz, Python yoki HTML & CSS
+        kurslaridan boshlashingiz mumkin.
+
+    </p>
+
+
+    <a href="python.html">
+        Python kursini boshlash →
+    </a>
+
+</section>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<footer>
+
+    <p>
+
+        © 2026
+        <strong>CodeForge</strong>
+        — Koderlik Maktabi
+
+    </p>
+
+
+    <p style="margin-top:8px;">
+
+        Learn • Code • Build • Repeat
+
+    </p>
+
+</footer>
+
+
+<!-- =========================================
+     JAVASCRIPT
+========================================= -->
+
+<script>
+
+    /* =====================================
+       MENU
+    ===================================== */
+
+    const sideMenu =
+        document.getElementById("sideMenu");
+
+    const overlay =
+        document.getElementById("overlay");
+
+
+    function openMenu() {
+
+        sideMenu.classList.add("active");
+
+        overlay.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+    }
+
+
+    function closeMenu() {
+
+        sideMenu.classList.remove("active");
+
+        overlay.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    }
+
+
+    document.addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Escape") {
+
+                closeMenu();
+
+            }
+
+        }
+    );
+
+
+    /* =====================================
+       COURSE SEARCH
+    ===================================== */
+
+    const searchInput =
+        document.getElementById("searchInput");
+
+    const courseCards =
+        document.querySelectorAll(".course");
+
+
+    searchInput.addEventListener(
+        "input",
+        function() {
+
+            const value =
+                this.value
+                    .toLowerCase()
+                    .trim();
+
+
+            courseCards.forEach(
+                function(card) {
+
+                    const name =
+                        card.dataset.name
+                            .toLowerCase();
+
+
+                    const text =
+                        card.innerText
+                            .toLowerCase();
+
+
+                    if (
+                        name.includes(value) ||
+                        text.includes(value)
+                    ) {
+
+                        card.style.display =
+                            "flex";
+
+                    } else {
+
+                        card.style.display =
+                            "none";
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+    /* =====================================
+       FILTER
+    ===================================== */
+
+    function filterCourses(
+        category,
+        button
+    ) {
+
+        document
+            .querySelectorAll(".filter")
+            .forEach(
+                function(btn) {
+
+                    btn.classList
+                        .remove("active");
+
+                }
+            );
+
+
+        button.classList.add("active");
+
+
+        courseCards.forEach(
+            function(card) {
+
+                if (
+                    category === "all" ||
+                    card.dataset.category === category
+                ) {
+
+                    card.style.display =
+                        "flex";
+
+                } else {
+
+                    card.style.display =
+                        "none";
+
+                }
+
+            }
+        );
+
+
+        searchInput.value = "";
+
+    }
+
+</script>
+
+</body>
+  </html>

@@ -2925,6 +2925,82 @@ function syncScroll() {
 
     }
 
+function addFileToSidebar(filename) {
+
+    const filesContainer =
+        document.querySelector(".files");
+
+    const file = document.createElement("div");
+
+    file.className = "file";
+
+    file.id =
+        "file-" + filename.replace(/\W/g, "");
+
+    const icon =
+        getFileIcon(filename);
+
+    file.innerHTML = `
+        <span class="file-icon">
+            ${icon}
+        </span>
+
+        <span>
+            ${filename}
+        </span>
+    `;
+
+    file.onclick = function() {
+        openFile(filename);
+    };
+
+    filesContainer.appendChild(file);
+}
+
+
+function addFileToTab(filename) {
+
+    const tabs =
+        document.querySelector(".tabs");
+
+    const tab =
+        document.createElement("div");
+
+    tab.className = "tab";
+
+    tab.id =
+        "tab-" + filename.replace(/\W/g, "");
+
+    tab.innerHTML = `
+        ${getFileIcon(filename)}
+        ${filename}
+    `;
+
+    tab.onclick = function() {
+        openFile(filename);
+    };
+
+    tabs.appendChild(tab);
+}
+
+
+function getFileIcon(filename) {
+
+    if (filename.endsWith(".html")) {
+        return "📄";
+    }
+
+    if (filename.endsWith(".css")) {
+        return "🎨";
+    }
+
+    if (filename.endsWith(".js")) {
+        return "⚡";
+    }
+
+    return "📄";
+}
+    
 }
 
 </script>

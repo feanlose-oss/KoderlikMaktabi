@@ -274,6 +274,17 @@
             font-size: 14px;
 
             line-height: 1.7;
+
+            <div class="editor-wrap">
+    <pre id="highlight"><code></code></pre>
+
+    <textarea
+        id="editor"
+        spellcheck="false"
+        oninput="updateCode(); highlightCode();"
+        onscroll="syncScroll()"
+    ></textarea>
+</div>
         }
 
         /* ================= PREVIEW ================= */

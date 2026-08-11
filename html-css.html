@@ -1885,6 +1885,84 @@ alert("Kod nusxalandi! ✅");
 
 }
 
+    .editor-wrap {
+    position: relative;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    background: #080c12;
+}
+
+#highlight,
+#editor {
+    position: absolute;
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    margin: 0;
+    padding: 20px;
+
+    border: none;
+    outline: none;
+
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    line-height: 1.7;
+
+    white-space: pre-wrap;
+    word-wrap: break-word;
+
+    overflow: auto;
+}
+
+#highlight {
+    pointer-events: none;
+    color: #d8dee8;
+}
+
+#editor {
+    background: transparent;
+    color: transparent;
+    caret-color: #00e5ff;
+
+    resize: none;
+    z-index: 2;
+}
+
+#highlight {
+    z-index: 1;
+}
+
+.token-tag {
+    color: #ff7ab2;
+}
+
+.token-attr {
+    color: #ffd166;
+}
+
+.token-string {
+    color: #5cff9d;
+}
+
+.token-keyword {
+    color: #b58cff;
+}
+
+.token-number {
+    color: #ff9f43;
+}
+
+.token-comment {
+    color: #667181;
+}
+
+.token-selector {
+    color: #00e5ff;
+        }
+
 }
 
 </script>

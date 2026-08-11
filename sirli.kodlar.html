@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sirli Kodlar | Sirli Kodlar</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at 20% 10%, rgba(0, 229, 255, .09), transparent 30%),
+                radial-gradient(circle at 80% 40%, rgba(120, 70, 255, .08), transparent 30%),
+                #070a10;
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            height: 70px;
+            padding: 0 7%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(7, 10, 16, .82);
+            backdrop-filter: blur(15px);
+
+            border-bottom: 1px solid rgba(255,255,255,.07);
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 800;
+            color: #00e5ff;
+            letter-spacing: .5px;
+        }
+
+        nav {
+            display: flex;
+            gap: 25px;
+        }
+
+        nav a {
+            color: #aeb7c6;
+            text-decoration: none;
+            font-size: 14px;
+            transition: .25s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #00e5ff;
+        }
+
+        .menu {
+            display: none;
+            font-size: 27px;
+            cursor: pointer;
+        }
+
+        /* ================= HERO ================= */
+
+        .hero {
+            width: 90%;
+            max-width: 1100px;
+            margin: auto;
+
+            min-height: 620px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+
+            padding: 9px 15px;
+            border-radius: 50px;
+
+            background: rgba(0, 229, 255, .07);
+            border: 1px solid rgba(0, 229, 255, .2);
+
+            color: #00e5ff;
+            font-size: 13px;
+            margin-bottom: 25px;
+        }
+
+        .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #00e5ff;
+            box-shadow: 0 0 12px #00e5ff;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 88px);
+            line-height: 1;
+            font-weight: 900;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 span {
+            color: #00e5ff;
+            text-shadow: 0 0 35px rgba(0,229,255,.25);
+        }
+
+        .hero p {
+            max-width: 680px;
+            color: #929baa;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 14px;
+            margin-top: 35px;
+        }
+
+        .btn {
+            padding: 14px 23px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: .3s;
+        }
+
+        .primary {
+            background: #00e5ff;
+            color: #031015;
+        }
+
+        .primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,229,255,.25);
+        }
+
+        .secondary {
+            border: 1px solid #263140;
+            color: #d6dbe3;
+            background: rgba(255,255,255,.02);
+        }
+
+        .secondary:hover {
+            border-color: #00e5ff;
+            color: #00e5ff;
+        }
+
+        /* ================= TERMINAL ================= */
+
+        .terminal-section {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto 100px;
+        }
+
+        .terminal {
+            background: #090c11;
+            border: 1px solid #202936;
+            border-radius: 18px;
+            overflow: hidden;
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,.45),
+                0 0 50px rgba(0,229,255,.04);
+        }
+
+        .terminal-top {
+            height: 45px;
+            padding: 0 17px;
+
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            background: #10151d;
+            border-bottom: 1px solid #202936;
+        }
+
+        .circle {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: #333b47;
+        }
+
+        .terminal-title {
+            margin-left: 10px;
+            color: #687386;
+            font-size: 12px;
+        }
+
+        .terminal-body {
+            padding: 28px;
+            font-family: monospace;
+            line-height: 1.9;
+            color: #aeb8c7;
+            font-size: 14px;
+        }
+
+        .green {
+            color: #5cff9d;
+        }
+
+        .cyan {
+            color: #00e5ff;
+        }
+
+        .purple {
+            color: #b68cff;
+        }
+
+        .yellow {
+            color: #ffd166;
+        }
+
+        /* ================= SECTION ================= */
+
+        .section {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto 100px;
+        }
+
+        .section-title {
+            margin-bottom: 35px;
+        }
+
+        .section-title small {
+            color: #00e5ff;
+            font-size: 13px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+            margin-top: 10px;
+        }
+
+        .section-title p {
+            color: #7e8796;
+            margin-top: 10px;
+        }
+
+        /* ================= SECRET CARDS ================= */
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            position: relative;
+
+            padding: 28px;
+            min-height: 230px;
+
+            background: linear-gradient(
+                145deg,
+                rgba(18,24,34,.95),
+                rgba(10,14,21,.95)
+            );
+
+            border: 1px solid #202936;
+            border-radius: 18px;
+
+            overflow: hidden;
+            transition: .3s;
+        }
+
+        .card::after {
+            content: "";
+
+            position: absolute;
+            width: 120px;
+            height: 120px;
+
+            right: -50px;
+            bottom: -50px;
+
+            background: #00e5ff;
+            filter: blur(65px);
+            opacity: .08;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(0,229,255,.45);
+            box-shadow: 0 15px 40px rgba(0,0,0,.25);
+        }
+
+        .card-icon {
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+        }
+
+        .card p {
+            color: #858e9d;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        /* ================= CODE CHALLENGE ================= */
+
+        .challenge {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .challenge-box {
+            padding: 28px;
+
+            background: #0c1118;
+            border: 1px solid #202936;
+            border-radius: 18px;
+        }
+
+        .challenge-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .challenge-box p {
+            color: #8b95a4;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .code {
+            margin-top: 20px;
+
+            padding: 20px;
+            border-radius: 12px;
+
+            background: #070a0e;
+            border: 1px solid #1d2632;
+
+            font-family: monospace;
+            color: #b7c0ce;
+            overflow-x: auto;
+        }
+
+        /* ================= STATS ================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .stat {
+            padding: 25px;
+            text-align: center;
+
+            background: rgba(255,255,255,.025);
+            border: 1px solid #202936;
+            border-radius: 15px;
+        }
+
+        .stat strong {
+            display: block;
+            color: #00e5ff;
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .stat span {
+            color: #788291;
+            font-size: 13px;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            padding: 35px 20px;
+            text-align: center;
+
+            border-top: 1px solid #1b222d;
+            color: #667080;
+            font-size: 13px;
+        }
+
+        footer span {
+            color: #00e5ff;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media (max-width: 800px) {
+
+            nav {
+                display: none;
+            }
+
+            .menu {
+                display: block;
+            }
+
+            .hero {
+                min-height: 560px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .btn {
+                text-align: center;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .challenge {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 430px) {
+
+            header {
+                padding: 0 5%;
+            }
+
+            .hero h1 {
+                font-size: 48px;
+            }
+
+            .terminal-body {
+                padding: 20px;
+                font-size: 12px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header>
+
+    <div class="logo">
+        ⌘ Sirli Kodlar
+    </div>
+
+    <nav>
+        <a href="index.html">Bosh sahifa</a>
+        <a href="kurslar.html">Kurslar</a>
+        <a href="sirli.kodlar.html" class="active">Sirli Kodlar</a>
+    </nav>
+
+    <div class="menu">☰</div>
+
+</header>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="badge">
+        <span class="dot"></span>
+        Dasturchilar maxfiy hududi
+    </div>
+
+    <h1>
+        <span>Sirli</span><br>
+        Kodlar
+    </h1>
+
+    <p>
+        Oddiy kodlardan tashqariga chiqing.
+        Qiziqarli kodlar, yashirin imkoniyatlar,
+        dasturchilar sirlari va mini challenge'larni
+        shu yerda kashf eting.
+    </p>
+
+    <div class="buttons">
+        <a href="#sirlar" class="btn primary">
+            Sirlarni ko‘rish →
+        </a>
+
+        <a href="kurslar.html" class="btn secondary">
+            Kurslarni ko‘rish
+        </a>
+    </div>
+
+</section>
+
+
+<!-- ================= TERMINAL ================= -->
+
+<section class="terminal-section">
+
+    <div class="terminal">
+
+        <div class="terminal-top">
+
+            <span class="circle"></span>
+            <span class="circle"></span>
+            <span class="circle"></span>
+
+            <span class="terminal-title">
+                secret-terminal
+            </span>
+
+        </div>
+
+        <div class="terminal-body">
+
+            <div>
+                <span class="green">user@developer</span>:~$
+                <span class="cyan">./discover_secrets</span>
+            </div>
+
+            <div>
+                Initializing secret system...
+            </div>
+
+            <div class="green">
+                ✓ System ready
+            </div>
+
+            <br>
+
+            <div>
+                <span class="purple">[01]</span>
+                Hidden code detected
+            </div>
+
+            <div>
+                <span class="purple">[02]</span>
+                Developer tricks loaded
+            </div>
+
+            <div>
+                <span class="purple">[03]</span>
+                Easter eggs unlocked
+            </div>
+
+            <br>
+
+            <div class="yellow">
+                Access granted █
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= SIRLAR ================= -->
+
+<section class="section" id="sirlar">
+
+    <div class="section-title">
+
+        <small>01 — Secret Zone</small>
+
+        <h2>Dasturchilar sirlari</h2>
+
+        <p>
+            Kod yozishda foydali bo‘ladigan kichik,
+            ammo kuchli usullar.
+        </p>
+
+    </div>
+
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-icon">⌨️</div>
+
+            <h3>Keyboard shortcutlar</h3>
+
+            <p>
+                Tezroq kod yozish uchun VS Code va
+                boshqa editorlardagi eng foydali
+                klaviatura kombinatsiyalarini o‘rganing.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🧠</div>
+
+            <h3>Developer mindset</h3>
+
+            <p>
+                Kuchli dasturchi faqat kod yozmaydi.
+                U muammoni tahlil qiladi va eng yaxshi
+                yechimni izlaydi.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🔍</div>
+
+            <h3>Debugging siri</h3>
+
+            <p>
+                Xatoni ko‘rish — muammo emas.
+                Xatoni topa olish dasturchining
+                eng muhim ko‘nikmalaridan biridir.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">⚡</div>
+
+            <h3>Tez kod yozish</h3>
+
+            <p>
+                Snippetlar, autocomplete va
+                editor imkoniyatlaridan foydalanib
+                kod yozish tezligini oshiring.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🧩</div>
+
+            <h3>Clean Code</h3>
+
+            <p>
+                Kod faqat ishlashi emas,
+                boshqa dasturchilar uchun ham
+                tushunarli bo‘lishi kerak.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-icon">🚀</div>
+
+            <h3>Project Secret</h3>
+
+            <p>
+                Ko‘p narsani o‘qishdan ko‘ra,
+                kichik loyihalarni yaratish orqali
+                tezroq tajriba to‘plash mumkin.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CHALLENGE ================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <small>02 — Challenge</small>
+
+        <h2>Bugungi kod challenge</h2>
+
+        <p>
+            Kodni o‘qing va natijani topishga harakat qiling.
+        </p>
+
+    </div>
+
+
+    <div class="challenge">
+
+        <div class="challenge-box">
+
+            <h3>❓ Savol</h3>
+
+            <p>
+                Ushbu JavaScript kodi ekranga
+                qanday natija chiqaradi?
+            </p>
+
+            <div class="code">
+                let a = 5;<br>
+                let b = 10;<br>
+                console.log(a + b * 2);
+            </div>
+
+        </div>
+
+
+        <div class="challenge-box">
+
+            <h3>💡 Hint</h3>
+
+            <p>
+                Matematik amallarda operatorlarning
+                bajarilish tartibiga e'tibor bering.
+            </p>
+
+            <div class="code">
+                Natija: ?<br><br>
+                O‘zingiz topib ko‘ring 🚀
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= STATS ================= -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <small>03 — Community</small>
+
+        <h2>Sirli Kodlar statistikasi</h2>
+
+    </div>
+
+
+    <div class="stats">
+
+        <div class="stat">
+            <strong>9+</strong>
+            <span>Dasturlash kurslari</span>
+        </div>
+
+        <div class="stat">
+            <strong>50+</strong>
+            <span>Code challenge</span>
+        </div>
+
+        <div class="stat">
+            <strong>100+</strong>
+            <span>Foydali kodlar</span>
+        </div>
+
+        <div class="stat">
+            <strong>∞</strong>
+            <span>O‘rganish imkoniyati</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    © 2026 <span>Sirli Kodlar</span> —
+    Dasturlashni o‘rganing. Kod yozing. Yaratib boring. 🚀
+
+</footer>
+
+
+<script>
+
+    // Mobile menu
+    const menu = document.querySelector(".menu");
+    const nav = document.querySelector("nav");
+
+    menu.addEventListener("click", () => {
+
+        if (nav.style.display === "flex") {
+            nav.style.display = "none";
+        } else {
+            nav.style.display = "flex";
+            nav.style.position = "absolute";
+            nav.style.top = "70px";
+            nav.style.left = "0";
+            nav.style.right = "0";
+            nav.style.padding = "20px";
+            nav.style.flexDirection = "column";
+            nav.style.background = "#090d14";
+            nav.style.borderBottom = "1px solid #202936";
+        }
+
+    });
+
+</script>
+
+</body>
+  </html>

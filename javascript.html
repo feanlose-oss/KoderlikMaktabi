@@ -2818,6 +2818,111 @@ function copyCode(id){
             "Kod nusxalandi! ✅"
         );
 
+        function escapeHTML(text) {
+    return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+
+
+function highlightCode() {
+
+    const code =
+        document.getElementById("editor").value;
+
+    const output =
+        document.querySelector("#highlight code");
+
+    if (currentFile === "index.html") {
+
+        let result =
+            escapeHTML(code);
+
+        result = result.replace(
+            /(&lt;\/?)([\w-]+)/g,
+            '$1<span class="token-tag">$2</span>'
+        );
+
+        result = result.replace(
+            /([\w-]+)(=)/g,
+            '<span class="token-attr">$1</span>$2'
+        );
+
+        result = result.replace(
+            /(&quot;.*?&quot;|".*?"|'.*?')/g,
+            '<span class="token-string">$1</span>'
+        );
+
+        output.innerHTML = result;
+
+    }
+
+    else if (currentFile === "style.css") {
+
+        let result =
+            escapeHTML(code);
+
+        result = result.replace(
+            /([.#]?[\w-]+)(\s*\{)/g,
+            '<span class="token-selector">$1</span>$2'
+        );
+
+        result = result.replace(
+            /([\w-]+)(\s*:)/g,
+            '<span class="token-attr">$1</span>$2'
+        );
+
+        result = result.replace(
+            /(#?[0-9a-fA-F]{3,8}|\d+(?:px|rem|em|%|vh|vw)?)/g,
+            '<span class="token-number">$1</span>'
+        );
+
+    }
+
+    else {
+
+        let result =
+            escapeHTML(code);
+
+        result = result.replace(
+            /\b(function|const|let|var|return|if|else|for|while|new)\b/g,
+            '<span class="token-keyword">$1</span>'
+        );
+
+        result = result.replace(
+            /\b\d+\b/g,
+            '<span class="token-number">$1</span>'
+        );
+
+        result = result.replace(
+            /(&quot;.*?&quot;|".*?"|'.*?')/g,
+            '<span class="token-string">$1</span>'
+        );
+
+    }
+
+    output.innerHTML = result;
+
+    syncScroll();
+}
+
+
+function syncScroll() {
+
+    const editor =
+        document.getElementById("editor");
+
+    const highlight =
+        document.getElementById("highlight");
+
+    highlight.scrollTop =
+        editor.scrollTop;
+
+    highlight.scrollLeft =
+        editor.scrollLeft;
+}
+
     }
 
 }

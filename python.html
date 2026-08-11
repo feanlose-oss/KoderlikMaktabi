@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CodeForge — Python kursi</title>
+
+<meta name="theme-color" content="#050807">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#050807;
+    color:#edf7f1;
+    font-family:Arial,Helvetica,sans-serif;
+    overflow-x:hidden;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+button{
+    font-family:inherit;
+}
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    pointer-events:none;
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(0,255,136,.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(0,255,136,.06),
+            transparent 30%
+        ),
+        #050807;
+}
+
+.grid{
+    position:absolute;
+    inset:0;
+    opacity:.13;
+    background-image:
+        linear-gradient(
+            rgba(0,255,136,.08) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0,255,136,.08) 1px,
+            transparent 1px
+        );
+    background-size:40px 40px;
+    animation:gridMove 18s linear infinite;
+}
+
+@keyframes gridMove{
+    from{transform:translateY(0)}
+    to{transform:translateY(40px)}
+}
+
+/* HEADER */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    height:70px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 6%;
+
+    background:rgba(5,8,7,.84);
+    border-bottom:1px solid rgba(0,255,136,.15);
+    backdrop-filter:blur(16px);
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    font-size:21px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.logo-icon{
+    width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    color:#00ff88;
+
+    border:1px solid rgba(0,255,136,.3);
+    background:rgba(0,255,136,.06);
+}
+
+.logo span{
+    color:#00ff88;
+}
+
+.menu-btn{
+    width:44px;
+    height:44px;
+
+    border:1px solid rgba(0,255,136,.2);
+    border-radius:12px;
+
+    background:rgba(0,255,136,.05);
+    color:#00ff88;
+
+    font-size:24px;
+
+    cursor:pointer;
+}
+
+/* SIDE MENU */
+
+.side-menu{
+    position:fixed;
+    top:0;
+    right:-310px;
+
+    width:300px;
+    height:100vh;
+
+    z-index:3000;
+
+    padding:90px 22px 25px;
+
+    background:rgba(6,11,9,.98);
+
+    border-left:1px solid rgba(0,255,136,.18);
+
+    box-shadow:-20px 0 60px rgba(0,0,0,.5);
+
+    backdrop-filter:blur(20px);
+
+    transition:right .35s ease;
+
+    overflow-y:auto;
+}
+
+.side-menu.active{
+    right:0;
+}
+
+.close-menu{
+    position:absolute;
+    top:22px;
+    right:22px;
+
+    width:42px;
+    height:42px;
+
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:12px;
+
+    background:rgba(255,255,255,.04);
+    color:white;
+
+    font-size:23px;
+    cursor:pointer;
+}
+
+.menu-title{
+    margin-bottom:20px;
+
+    color:#00ff88;
+
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:2px;
+}
+
+.menu-link{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    padding:15px;
+    margin-bottom:8px;
+
+    border:1px solid transparent;
+    border-radius:13px;
+
+    color:#dce8e1;
+    background:rgba(255,255,255,.025);
+
+    transition:.25s;
+}
+
+.menu-link:hover{
+    color:#00ff88;
+    border-color:rgba(0,255,136,.18);
+    background:rgba(0,255,136,.06);
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+
+    z-index:2500;
+
+    background:rgba(0,0,0,.65);
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.3s;
+}
+
+.overlay.active{
+    opacity:1;
+    visibility:visible;
+}
+
+/* HERO */
+
+.hero{
+    max-width:1100px;
+    margin:auto;
+
+    padding:70px 6% 50px;
+
+    text-align:center;
+}
+
+.python-icon{
+    width:90px;
+    height:90px;
+
+    margin:0 auto 22px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:25px;
+
+    font-size:48px;
+
+    background:rgba(0,255,136,.07);
+
+    border:1px solid rgba(0,255,136,.2);
+
+    box-shadow:
+        0 0 40px rgba(0,255,136,.08);
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:9px 15px;
+
+    margin-bottom:20px;
+
+    border:1px solid rgba(0,255,136,.2);
+    border-radius:50px;
+
+    color:#00ff88;
+    background:rgba(0,255,136,.05);
+
+    font-size:11px;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.dot{
+    width:7px;
+    height:7px;
+
+    border-radius:50%;
+    background:#00ff88;
+
+    box-shadow:0 0 12px #00ff88;
+}
+
+.hero h1{
+    font-size:clamp(45px,8vw,78px);
+    line-height:1;
+
+    letter-spacing:-4px;
+
+    margin-bottom:22px;
+}
+
+.hero h1 span{
+    color:#00ff88;
+}
+
+.hero p{
+    max-width:700px;
+
+    margin:auto;
+
+    color:#95a49c;
+
+    font-size:16px;
+    line-height:1.8;
+}
+
+.hero-buttons{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:10px;
+
+    margin-top:28px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    padding:13px 20px;
+
+    border-radius:13px;
+
+    font-weight:bold;
+
+    transition:.25s;
+}
+
+.primary{
+    color:#001b0d;
+    background:#00ff88;
+}
+
+.primary:hover{
+    transform:translateY(-3px);
+    box-shadow:0 0 30px rgba(0,255,136,.22);
+}
+
+.secondary{
+    border:1px solid rgba(255,255,255,.1);
+    background:rgba(255,255,255,.04);
+    color:#e1ebe5;
+}
+
+/* COURSE INFO */
+
+.info-grid{
+    max-width:1100px;
+    margin:auto;
+
+    padding:0 6% 60px;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+
+    gap:14px;
+}
+
+.info{
+    padding:20px;
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+
+    background:rgba(255,255,255,.025);
+}
+
+.info strong{
+    display:block;
+
+    color:#00ff88;
+
+    font-size:25px;
+
+    margin-bottom:7px;
+}
+
+.info span{
+    color:#84938b;
+    font-size:13px;
+}
+
+/* CONTENT */
+
+.content{
+    max-width:1100px;
+    margin:auto;
+
+    padding:20px 6% 80px;
+}
+
+.section{
+    margin-bottom:55px;
+}
+
+.section-title{
+    margin-bottom:20px;
+}
+
+.section-title small{
+    color:#00ff88;
+
+    font-size:11px;
+    font-weight:bold;
+
+    letter-spacing:2px;
+}
+
+.section-title h2{
+    margin-top:8px;
+
+    font-size:34px;
+}
+
+.section-title p{
+    margin-top:10px;
+
+    color:#8d9d94;
+
+    line-height:1.7;
+}
+
+/* TEXT CARD */
+
+.text-card{
+    padding:25px;
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:20px;
+
+    background:rgba(255,255,255,.025);
+}
+
+.text-card p{
+    color:#a5b2ab;
+
+    line-height:1.85;
+
+    margin-bottom:14px;
+}
+
+.text-card strong{
+    color:#eaf5ee;
+}
+
+/* CODE */
+
+.code-box{
+    margin-top:18px;
+
+    border:1px solid rgba(0,255,136,.13);
+    border-radius:18px;
+
+    overflow:hidden;
+
+    background:#020403;
+}
+
+.code-header{
+    height:42px;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    padding:0 15px;
+
+    border-bottom:1px solid rgba(255,255,255,.07);
+
+    color:#6f7f76;
+
+    font-size:12px;
+}
+
+.copy-btn{
+    padding:6px 10px;
+
+    border:1px solid rgba(0,255,136,.16);
+    border-radius:8px;
+
+    background:rgba(0,255,136,.05);
+
+    color:#00ff88;
+
+    cursor:pointer;
+}
+
+pre{
+    padding:20px;
+
+    overflow-x:auto;
+
+    color:#dce9e1;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size:13px;
+
+    line-height:1.8;
+}
+
+.keyword{
+    color:#ff79c6;
+}
+
+.string{
+    color:#a8ffb9;
+}
+
+.function{
+    color:#8be9fd;
+}
+
+.comment{
+    color:#65746c;
+}
+
+/* LESSONS */
+
+.lessons{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:12px;
+}
+
+.lesson{
+    position:relative;
+
+    display:flex;
+    align-items:center;
+
+    gap:15px;
+
+    padding:17px;
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:15px;
+
+    background:rgba(255,255,255,.025);
+
+    transition:.25s;
+}
+
+.lesson:hover{
+    border-color:rgba(0,255,136,.25);
+
+    transform:translateX(4px);
+}
+
+.lesson-number{
+    min-width:40px;
+    height:40px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:12px;
+
+    color:#00ff88;
+
+    background:rgba(0,255,136,.07);
+
+    font-weight:bold;
+}
+
+.lesson h3{
+    font-size:15px;
+    margin-bottom:5px;
+}
+
+.lesson p{
+    color:#7f8e87;
+    font-size:12px;
+}
+
+/* ROADMAP */
+
+.roadmap{
+    display:grid;
+
+    gap:12px;
+}
+
+.road{
+    display:grid;
+
+    grid-template-columns:70px 1fr;
+
+    padding:20px;
+
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+
+    background:rgba(255,255,255,.025);
+}
+
+.road-number{
+    color:#00ff88;
+
+    font-size:25px;
+    font-weight:900;
+}
+
+.road h3{
+    margin-bottom:7px;
+}
+
+.road p{
+    color:#899890;
+
+    line-height:1.6;
+
+    font-size:14px;
+}
+
+/* TASK */
+
+.task{
+    padding:25px;
+
+    border:1px solid rgba(0,255,136,.15);
+    border-radius:20px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0,
+            rgba(0,255,136,.07),
+            transparent 35%
+        ),
+        rgba(255,255,255,.025);
+}
+
+.task h3{
+    margin-bottom:12px;
+}
+
+.task p{
+    color:#9aa9a1;
+    line-height:1.7;
+}
+
+.task-list{
+    list-style:none;
+
+    margin-top:17px;
+}
+
+.task-list li{
+    padding:8px 0;
+
+    color:#b7c5bd;
+}
+
+.task-list li::before{
+    content:"✓";
+    color:#00ff88;
+    margin-right:9px;
+}
+
+/* FINAL PROJECT */
+
+.project{
+    padding:30px;
+
+    border:1px solid rgba(0,255,136,.22);
+    border-radius:22px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0,255,136,.08),
+            transparent 65%
+        ),
+        rgba(255,255,255,.02);
+}
+
+.project h2{
+    font-size:30px;
+
+    margin-bottom:13px;
+}
+
+.project p{
+    color:#95a49c;
+
+    line-height:1.75;
+}
+
+.project-features{
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:10px;
+
+    margin-top:20px;
+}
+
+.project-feature{
+    padding:13px;
+
+    border:1px solid rgba(255,255,255,.07);
+    border-radius:12px;
+
+    color:#c1cec7;
+
+    background:rgba(255,255,255,.025);
+
+    font-size:13px;
+}
+
+/* CERTIFICATE */
+
+.certificate{
+    margin-top:20px;
+
+    padding:30px;
+
+    text-align:center;
+
+    border:1px solid rgba(0,255,136,.2);
+    border-radius:22px;
+
+    background:rgba(0,255,136,.035);
+}
+
+.certificate-icon{
+    font-size:45px;
+
+    margin-bottom:10px;
+}
+
+.certificate h3{
+    font-size:25px;
+
+    margin-bottom:10px;
+}
+
+.certificate p{
+    max-width:600px;
+
+    margin:auto;
+
+    color:#899991;
+
+    line-height:1.7;
+}
+
+/* CTA */
+
+.cta{
+    margin-top:60px;
+
+    padding:50px 25px;
+
+    text-align:center;
+
+    border:1px solid rgba(0,255,136,.18);
+    border-radius:25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(0,255,136,.09),
+            transparent 65%
+        ),
+        rgba(255,255,255,.02);
+}
+
+.cta h2{
+    font-size:clamp(28px,5vw,43px);
+
+    margin-bottom:12px;
+}
+
+.cta p{
+    max-width:600px;
+
+    margin:auto;
+
+    color:#8c9b93;
+
+    line-height:1.7;
+}
+
+.cta .btn{
+    margin-top:24px;
+}
+
+/* FOOTER */
+
+footer{
+    padding:35px 6%;
+
+    text-align:center;
+
+    border-top:1px solid rgba(255,255,255,.07);
+
+    color:#65746c;
+
+    font-size:13px;
+}
+
+footer strong{
+    color:#00ff88;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:800px){
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .lessons{
+        grid-template-columns:1fr;
+    }
+
+    .project-features{
+        grid-template-columns:1fr;
+    }
+
+}
+
+@media(max-width:550px){
+
+    header{
+        padding:0 18px;
+    }
+
+    .hero{
+        padding:
+            55px 20px 40px;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+
+    .content{
+        padding:
+            20px 20px 60px;
+    }
+
+    .info-grid{
+        padding:
+            0 20px 40px;
+    }
+
+    .road{
+        grid-template-columns:50px 1fr;
+    }
+
+    .side-menu{
+        width:285px;
+    }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="grid"></div>
+</div>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <a href="index.html" class="logo">
+
+        <div class="logo-icon">
+            &lt;/&gt;
+        </div>
+
+        Code<span>Forge</span>
+
+    </a>
+
+    <button
+        class="menu-btn"
+        onclick="openMenu()">
+
+        ☰
+
+    </button>
+
+</header>
+
+
+<!-- MENU -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeMenu()">
+</div>
+
+
+<aside
+    class="side-menu"
+    id="sideMenu">
+
+    <button
+        class="close-menu"
+        onclick="closeMenu()">
+
+        ×
+
+    </button>
+
+    <div class="menu-title">
+        CODEFORGE MENU
+    </div>
+
+    <a class="menu-link" href="index.html">
+        🏠
+        <span>Bosh sahifa</span>
+    </a>
+
+    <a class="menu-link" href="kurslar.html">
+        📚
+        <span>Kurslar</span>
+    </a>
+
+    <a class="menu-link" href="python.html">
+        🐍
+        <span>Python</span>
+    </a>
+
+    <a class="menu-link" href="javascript.html">
+        ⚡
+        <span>JavaScript</span>
+    </a>
+
+    <a class="menu-link" href="sirli-kodlar.html">
+        🔐
+        <span>Sirli kodlar</span>
+    </a>
+
+    <a class="menu-link" href="terminal.html">
+        💻
+        <span>Terminal</span>
+    </a>
+
+    <a class="menu-link" href="loyihalar.html">
+        🚀
+        <span>Loyihalar</span>
+    </a>
+
+    <a class="menu-link" href="sertifikat.html">
+        🎓
+        <span>Sertifikat</span>
+    </a>
+
+</aside>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="python-icon">
+        🐍
+    </div>
+
+    <div class="badge">
+
+        <span class="dot"></span>
+
+        PYTHON KURSI
+
+    </div>
+
+    <h1>
+
+        Pythonni
+        <span>noldan</span>
+        o‘rganing
+
+    </h1>
+
+    <p>
+
+        Python nima ekanidan boshlab,
+        birinchi dasturingizni yaratish,
+        funksiyalar, ma'lumotlar tuzilmalari
+        va real loyihalargacha bosqichma-bosqich
+        o‘rganing.
+
+    </p>
+
+    <div class="hero-buttons">
+
+        <a
+            href="#darslar"
+            class="btn primary">
+
+            🚀 Kursni boshlash
+
+        </a>
+
+        <a
+            href="kurslar.html"
+            class="btn secondary">
+
+            ← Kurslarga qaytish
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- INFO -->
+
+<div class="info-grid">
+
+    <div class="info">
+
+        <strong>20+</strong>
+
+        <span>
+            Bosqichma-bosqich darslar
+        </span>
+
+    </div>
+
+    <div class="info">
+
+        <strong>10+</strong>
+
+        <span>
+            Amaliy topshiriqlar
+        </span>
+
+    </div>
+
+    <div class="info">
+
+        <strong>1</strong>
+
+        <span>
+            Yakuniy loyiha
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- CONTENT -->
+
+<main class="content">
+
+
+<!-- 1 -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <small>01 • PYTHON NIMA?</small>
+
+        <h2>Python haqida</h2>
+
+    </div>
+
+
+    <div class="text-card">
+
+        <p>
+
+            <strong>Python</strong> — o‘rganish nisbatan
+            oson bo‘lgan, keng qo‘llaniladigan
+            yuqori darajadagi dasturlash tili.
+
+        </p>
+
+        <p>
+
+            Python yordamida web dasturlar,
+            avtomatlashtirish skriptlari,
+            botlar, ma'lumotlar bilan ishlash,
+            sun'iy intellekt va boshqa ko‘plab
+            loyihalar yaratish mumkin.
+
+        </p>
+
+        <p>
+
+            Pythonning muhim afzalliklaridan biri —
+            uning sintaksisi yangi boshlovchilar
+            uchun tushunarli bo‘lishidir.
+
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- 2 -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <small>02 • FIRST CODE</small>
+
+        <h2>Birinchi Python kodingiz</h2>
+
+        <p>
+            Avval ekranga oddiy matn chiqaramiz.
+        </p>
+
+    </div>
+
+
+    <div class="code-box">
+
+        <div class="code-header">
+
+            <span>
+                main.py
+            </span>
+
+            <button
+                class="copy-btn"
+                onclick="copyCode('code1')">
+
+                Nusxalash
+
+            </button>
+
+        </div>
+
+
+        <pre id="code1">print("Salom, CodeForge!")</pre>
+
+    </div>
+
+</section>
+
+
+<!-- 3 -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <small>03 • VARIABLES</small>
+
+        <h2>O‘zgaruvchilar</h2>
+
+    </div>
+
+
+    <div class="text-card">
+
+        <p>
+
+            O‘zgaruvchi — ma'lumotni dastur
+            davomida saqlash uchun ishlatiladigan
+            nomlangan joy.
+
+        </p>
+
+    </div>
+
+
+    <div class="code-box">
+
+        <div class="code-header">
+
+            <span>
+                variables.py
+            </span>
+
+            <button
+                class="copy-btn"
+                onclick="copyCode('code2')">
+
+                Nusxalash
+
+            </button>
+
+        </div>
+
+
+        <pre id="code2">name = "Abdul"
+age = 12
+language = "Python"
+
+print(name)
+print(age)
+print(language)</pre>
+
+    </div>
+
+</section>
+
+
+<!-- 4 -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <small>04 • DATA TYPES</small>
+
+        <h2>Ma'lumot turlari</h2>
+
+    </div>
+
+
+    <div class="lessons">
+
+        <div class="lesson">
+
+            <div class="lesson-number">
+                01
+            </div>
+
+            <div>
+
+                <h3>String</h3>
+
+                <p>
+                    Matn saqlash uchun.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="lesson">
+
+            <div class="lesson-number">
+                02
+            </div>
+
+            <div>
+
+                <h3>Integer</h3>
+
+                <p>
+                    Butun sonlar.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="lesson">
+
+            <div class="lesson-number">
+                03
+            </div>
+
+            <div>
+
+                <h3>Float</h3>
+
+                <p>
+                    O‘nlik sonlar.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="lesson">
+
+            <div class="lesson-number">
+                04
+            </div>
+
+            <div>
+
+                <h3>Boolean</h3>
+
+                <p>
+                    True yoki False.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- 5 -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <small>05 • CONDITIONS</small>
+
+        <h2>if / elif / else</h2>
+
+    </div>
+
+
+    <div class="text-card">
+
+        <p>
+
+            Shart operatorlari dasturga
+            vaziyatga qarab turli qarorlar
+            qabul qilish imkonini beradi.
+
+        </p>
+
+    </div>
+
+
+    <div class="code-box">
+
+        <div class="code-header">
+
+            <span>
+                condition.py
+            </span>
+
+            <button
+                class="copy-btn"
+                onclick="copyCode('code3')">
+
+                Nusxalash
+
+            </button>
+
+        </div>
+
+
+        <pre id="code3">age = 18
+
+if age >= 18:
+    print("Siz voyaga yetgansiz")
+else:
+    print("Siz hali voyaga yetmagansiz")</pre>
+
+    </div>
+
+</section>
+
+
+<!-- 6 -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <small>06 • LOOPS</small>
+
+        <h2>Sikllar</h2>
+
+    </div>
+
+
+    <div class="text-card">
+
+        <p>
+
+            Sikl bir xil yoki o‘xshash amalni
+            bir necha marta bajarish uchun ishlatiladi.
+
+        </p>
+
+    </div>
+
+
+    <div class="code-box">
+
+        <div class="code-header">
+
+            <span>
+                loop.py
+            </span>
+
+            <button
+                class="copy-btn"
+                onclick="copyCode('code4')">
+
+                Nusxalash
+
+            </button>
+
+        </div>
+
+
+        <pre id="code4">for i in range(1, 6):
+    print("Son:", i)</pre>
+
+    </div>
+
+</section>
+
+
+<!-- 7 -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <small>07 • FUNCTIONS</small>
+
+        <h2>Funksiyalar</h2>
+
+    </div>
+
+
+    <div class="text-card">
+
+        <p>
+
+            Funksiya — ma'lum bir vazifani
+            bajaruvchi qayta ishlatiladigan kod
+            qismi.
+
+        </p>
+
+    </div>
+
+
+    <div class="code-box">
+
+        <div class="code-header">
+
+            <span>
+                function.py
+            </span>
+
+            <button
+                class="copy-btn"
+                onclick="copyCode('code5')">
+
+                Nusxalash
+
+            </button>
+
+        </div>
+
+
+        <pre id="code5">def salom_ber(ism):
+    print("Salom,", ism)
+
+salom_ber("Coder")</pre>
+
+    </div>
+
+</section>
+
+
+<!-- 8 -->
+
+<section
+    class="section"
+    id="darslar">
+
+    <div class="section-title">
+
+        <small>08 • COURSE ROADMAP</small>
+
+        <h2>Python darslari</h2>
+
+        <p>
+            Kursni shu tartibda o‘rganing.
+        </p>
+
+    </div>
+
+
+    <div class="roadmap">
+
+
+        <div class="road">
+
+            <div class="road-number">
+                01
+            </div>
+
+            <div>
+
+                <h3>
+                    Python bilan tanishuv
+                </h3>
+
+                <p>
+                    Python nima, qayerda ishlatiladi
+                    va dasturlash muhiti.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="road">
+
+            <div class="road-number">
+                02
+            </div>
+
+            <div>
+
+                <h3>
+                    print() va input()
+                </h3>
+
+                <p>
+                    Ma'lumot chiqarish va
+                    foydalanuvchidan ma'lumot olish.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="road">
+
+            <div class="road-number">
+                03
+            </div>
+
+            <div>
+
+                <h3>
+                    Variables
+                </h3>
+
+                <p>
+                    O‘zgaruvchilar va ma'lumot
+                    saqlash.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="road">
+
+            <div class="road-number">
+                04
+            </div>
+
+            <div>
+
+                <h3>
+                    Data Types
+                </h3>
+
+                <p>
+                    String, Integer, Float,
+                    Boolean va boshqalar.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="road">
+
+            <div class="road-number">
+                05
+            </div>
+
+            <div>
+
+                <h3>
+                    if / elif / else
+                </h3>
+
+                <p>
+                    Shartlar va dastur qarorlari.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="road">
+
+            <div class="road-number">
+                06
+            </div>
+
+            <div>
+
+                <h3>
+                    for / while
+                </h3>
+
+                <p>
+                    Sikllar va takroriy amallar.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="road">
+
+            <div class="road-number">
+                07
+            </div>
+
+            <div>
+
+                <h3>
+                    List / Tuple / Dictionary
+                </h3>
+
+                <p>
+                    Bir nechta ma'lumot bilan
+                    ishlash.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="road">
+
+            <div class="road-number">
+                08
+            </div>
+
+            <div>
+
+                <h3>
+                    Functions
+                </h3>
+
+                <p>
+                    Funksiyalar yaratish va
+                    parametrlar bilan ishlash.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="road">
+
+            <div class="road-number">
+                09
+            </div>
+
+            <div>
+
+                <h3>
+                    Files
+                </h3>
+
+                <p>
+                    Fayllarni o‘qish va yozish.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="road">
+
+            <div class="road-number">
+                10
+            </div>
+
+            <div>
+
+                <h3>
+                    Modules
+                </h3>
+
+                <p>
+                    Modullar va kutubxonalar.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TASK -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <small>09 • PRACTICE</small>
+
+        <h2>Amaliy topshiriq</h2>
+
+    </div>
+
+
+    <div class="task">
+
+        <h3>
+            🧠 Topshiriq: Oddiy profil dasturi
+        </h3>
+
+        <p>
+
+            Foydalanuvchidan uning ismi, yoshi
+            va sevimli dasturlash tilini so‘rang.
+            Keyin ekranga chiroyli profil
+            ma'lumotini chiqaring.
+
+        </p>
+
+
+        <ul class="task-list">
+
+            <li>
+                input() dan foydalaning
+            </li>
+
+            <li>
+                O‘zgaruvchilar yarating
+            </li>
+
+            <li>
+                print() orqali natijani chiqaring
+            </li>
+
+            <li>
+                Dasturga o‘zingizning dizayningizni bering
+            </li>
+
+        </ul>
+
+    </div>
+
+</section>
+
+
+<!-- FINAL PROJECT -->
+
+<section class="section">
+
+    <div class="section-title">
+
+        <small>10 • FINAL PROJECT</small>
+
+        <h2>Yakuniy loyiha</h2>
+
+    </div>
+
+
+    <div class="project">
+
+        <h2>
+            🔐 Python Password Manager
+        </h2>
+
+        <p>
+
+            Kurs oxirida o‘rgangan bilimlaringizdan
+            foydalanib oddiy Password Manager
+            loyihasini yaratamiz.
+
+        </p>
+
+
+        <div class="project-features">
+
+            <div class="project-feature">
+                🔑 Parol yaratish
+            </div>
+
+            <div class="project-feature">
+                💾 Ma'lumotlarni saqlash
+            </div>
+
+            <div class="project-feature">
+                🔎 Parolni qidirish
+            </div>
+
+            <div class="project-feature">
+                🗑 Ma'lumotni o‘chirish
+            </div>
+
+            <div class="project-feature">
+                🔐 Himoyalangan ma'lumot
+            </div>
+
+            <div class="project-feature">
+                🖥 Terminal interfeysi
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CERTIFICATE -->
+
+    <div class="certificate">
+
+        <div class="certificate-icon">
+            🎓
+        </div>
+
+        <h3>
+            Kursni yakunlang
+        </h3>
+
+        <p>
+
+            Barcha darslar va yakuniy loyihani
+            tugatganingizdan so‘ng CodeForge
+            sertifikat bosqichiga o‘tishingiz mumkin.
+
+        </p>
+
+        <a
+            href="sertifikat.html"
+            class="btn primary"
+            style="margin-top:20px;">
+
+            Sertifikat haqida →
+
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<div class="cta">
+
+    <h2>
+        Python dasturchisi bo‘lishga tayyormisiz? 🐍
+    </h2>
+
+    <p>
+
+        Eng muhimi — boshlash.
+        Keyingi kod esa sizniki.
+
+    </p>
+
+    <a
+        href="terminal.html"
+        class="btn primary">
+
+        💻 Terminalga o‘tish
+
+    </a>
+
+</div>
+
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    <p>
+
+        © 2026
+        <strong>CodeForge</strong>
+        — Koderlik Maktabi
+
+    </p>
+
+    <p style="margin-top:8px;">
+        Learn • Code • Build • Repeat
+    </p>
+
+</footer>
+
+
+<script>
+
+/* =====================================
+   MENU
+===================================== */
+
+const sideMenu =
+    document.getElementById("sideMenu");
+
+const overlay =
+    document.getElementById("overlay");
+
+
+function openMenu(){
+
+    sideMenu.classList.add("active");
+
+    overlay.classList.add("active");
+
+    document.body.style.overflow =
+        "hidden";
+}
+
+
+function closeMenu(){
+
+    sideMenu.classList.remove("active");
+
+    overlay.classList.remove("active");
+
+    document.body.style.overflow =
+        "";
+}
+
+
+document.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Escape"){
+            closeMenu();
+        }
+
+    }
+);
+
+
+/* =====================================
+   COPY CODE
+===================================== */
+
+function copyCode(id){
+
+    const element =
+        document.getElementById(id);
+
+    const text =
+        element.innerText;
+
+    navigator.clipboard.writeText(text)
+        .then(function(){
+
+            alert(
+                "Kod nusxalandi! ✅"
+            );
+
+        })
+        .catch(function(){
+
+            alert(
+                "Kod nusxalanmadi."
+            );
+
+        });
+
+}
+
+</script>
+
+</body>
+              </html>

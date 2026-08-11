@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>CodeForge — Koderlik Maktabi</title>
+    <title>Sirli Kodlar | Dasturlashni o‘rganing</title>
 
     <meta name="description"
-          content="CodeForge — dasturlashni noldan o'rganish uchun zamonaviy koderlik maktabi.">
-
-    <meta name="theme-color" content="#050807">
+          content="Sirli Kodlar — dasturlashni noldan o‘rganish uchun zamonaviy platforma.">
 
     <style>
+
         * {
             margin: 0;
             padding: 0;
@@ -23,361 +22,166 @@
         }
 
         body {
-            background: #050807;
-            color: #f2f7f4;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial, sans-serif;
+            background:
+                radial-gradient(circle at 15% 10%, rgba(0,229,255,.10), transparent 30%),
+                radial-gradient(circle at 85% 35%, rgba(120,70,255,.08), transparent 30%),
+                #070a10;
+            color: white;
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button {
-            font-family: inherit;
-        }
-
-        /* ==============================
-           BACKGROUND
-        ============================== */
-
-        .background {
-            position: fixed;
-            inset: 0;
-            z-index: -5;
-            overflow: hidden;
-            background:
-                radial-gradient(
-                    circle at 20% 20%,
-                    rgba(0, 255, 136, 0.10),
-                    transparent 30%
-                ),
-                radial-gradient(
-                    circle at 80% 80%,
-                    rgba(0, 255, 136, 0.07),
-                    transparent 30%
-                ),
-                #050807;
-        }
-
-        .grid {
-            position: absolute;
-            inset: 0;
-            opacity: 0.16;
-
-            background-image:
-                linear-gradient(
-                    rgba(0, 255, 136, 0.08) 1px,
-                    transparent 1px
-                ),
-                linear-gradient(
-                    90deg,
-                    rgba(0, 255, 136, 0.08) 1px,
-                    transparent 1px
-                );
-
-            background-size: 40px 40px;
-
-            animation: gridMove 15s linear infinite;
-        }
-
-        @keyframes gridMove {
-            from {
-                transform: translateY(0);
-            }
-
-            to {
-                transform: translateY(40px);
-            }
-        }
-
-        .glow {
-            position: absolute;
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            background: rgba(0, 255, 136, 0.07);
-            filter: blur(80px);
-        }
-
-        .glow.one {
-            top: -150px;
-            left: -100px;
-        }
-
-        .glow.two {
-            right: -150px;
-            bottom: -100px;
-        }
-
-        /* ==============================
-           HEADER
-        ============================== */
+        /* ================= NAVBAR ================= */
 
         header {
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 999;
 
-            height: 70px;
+            height: 72px;
+            padding: 0 7%;
 
             display: flex;
             align-items: center;
             justify-content: space-between;
 
-            padding: 0 6%;
+            background: rgba(7,10,16,.82);
+            backdrop-filter: blur(18px);
 
-            background: rgba(5, 8, 7, 0.80);
-            border-bottom: 1px solid rgba(0, 255, 136, 0.15);
-
-            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,.06);
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            font-size: 21px;
+            font-size: 22px;
             font-weight: 900;
-            letter-spacing: 1px;
+            color: #00e5ff;
+            letter-spacing: .5px;
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-
+        nav {
             display: flex;
             align-items: center;
-            justify-content: center;
-
-            border-radius: 12px;
-
-            color: #00ff88;
-            border: 1px solid rgba(0, 255, 136, 0.35);
-
-            background: rgba(0, 255, 136, 0.06);
-
-            box-shadow:
-                0 0 20px rgba(0, 255, 136, 0.10);
+            gap: 28px;
         }
 
-        .logo span {
-            color: #00ff88;
+        nav a {
+            color: #9ca6b5;
+            text-decoration: none;
+            font-size: 14px;
+            transition: .25s;
         }
 
-        /* MENU */
-
-        .menu-btn {
-            width: 44px;
-            height: 44px;
-
-            border: 1px solid rgba(0, 255, 136, 0.20);
-            border-radius: 12px;
-
-            background: rgba(0, 255, 136, 0.05);
-            color: #00ff88;
-
-            font-size: 25px;
-
-            cursor: pointer;
-
-            transition: 0.25s;
+        nav a:hover {
+            color: #00e5ff;
         }
 
-        .menu-btn:hover {
-            background: rgba(0, 255, 136, 0.12);
-            transform: scale(1.05);
+        .nav-btn {
+            padding: 10px 17px;
+            border: 1px solid rgba(0,229,255,.35);
+            border-radius: 9px;
+            color: #00e5ff !important;
         }
 
-        /* ==============================
-           SIDE MENU
-        ============================== */
-
-        .side-menu {
-            position: fixed;
-            top: 0;
-            right: -310px;
-
-            width: 300px;
-            height: 100vh;
-
-            z-index: 2000;
-
-            padding: 90px 22px 25px;
-
-            background: rgba(6, 11, 9, 0.97);
-
-            border-left:
-                1px solid rgba(0, 255, 136, 0.18);
-
-            box-shadow:
-                -20px 0 60px rgba(0, 0, 0, 0.5);
-
-            backdrop-filter: blur(20px);
-
-            transition: right 0.35s ease;
-
-            overflow-y: auto;
+        .nav-btn:hover {
+            background: #00e5ff;
+            color: #031015 !important;
         }
 
-        .side-menu.active {
-            right: 0;
-        }
-
-        .close-menu {
-            position: absolute;
-            top: 22px;
-            right: 22px;
-
-            width: 42px;
-            height: 42px;
-
-            border: 1px solid rgba(255,255,255,0.10);
-            border-radius: 12px;
-
-            background: rgba(255,255,255,0.04);
-            color: white;
-
-            font-size: 23px;
-
+        .menu {
+            display: none;
+            font-size: 28px;
             cursor: pointer;
         }
 
-        .menu-title {
-            margin-bottom: 20px;
-
-            color: #00ff88;
-
-            font-size: 13px;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        .menu-link {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-
-            width: 100%;
-
-            padding: 15px;
-
-            margin-bottom: 8px;
-
-            border: 1px solid transparent;
-            border-radius: 13px;
-
-            color: #dce8e1;
-
-            background: rgba(255,255,255,0.025);
-
-            transition: 0.25s;
-        }
-
-        .menu-link:hover {
-            color: #00ff88;
-            border-color: rgba(0,255,136,0.18);
-            background: rgba(0,255,136,0.06);
-            transform: translateX(-4px);
-        }
-
-        .overlay {
-            position: fixed;
-            inset: 0;
-
-            z-index: 1500;
-
-            background: rgba(0,0,0,0.65);
-
-            opacity: 0;
-            visibility: hidden;
-
-            transition: 0.3s;
-        }
-
-        .overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        /* ==============================
-           HERO
-        ============================== */
+        /* ================= HERO ================= */
 
         .hero {
-            min-height: calc(100vh - 70px);
+            position: relative;
+
+            width: 90%;
+            max-width: 1150px;
+            min-height: 680px;
+
+            margin: auto;
 
             display: flex;
             align-items: center;
             justify-content: center;
-
-            padding: 80px 6%;
 
             text-align: center;
         }
 
-        .hero-content {
-            max-width: 900px;
+        .hero::before {
+            content: "";
+
+            position: absolute;
+
+            width: 350px;
+            height: 350px;
+
+            background: #00e5ff;
+            filter: blur(150px);
+            opacity: .06;
+
+            top: 100px;
+            left: 50%;
+
+            transform: translateX(-50%);
         }
 
         .badge {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 9px;
 
-            padding: 9px 15px;
+            padding: 9px 16px;
 
-            margin-bottom: 25px;
-
-            border: 1px solid rgba(0,255,136,0.22);
             border-radius: 50px;
 
-            background: rgba(0,255,136,0.06);
+            background: rgba(0,229,255,.06);
+            border: 1px solid rgba(0,229,255,.20);
 
-            color: #00ff88;
-
+            color: #00e5ff;
             font-size: 13px;
-            font-weight: bold;
+
+            margin-bottom: 25px;
         }
 
-        .status-dot {
+        .dot {
             width: 7px;
             height: 7px;
 
             border-radius: 50%;
 
-            background: #00ff88;
-
-            box-shadow:
-                0 0 12px #00ff88;
+            background: #00e5ff;
+            box-shadow: 0 0 12px #00e5ff;
         }
 
         .hero h1 {
-            font-size: clamp(42px, 8vw, 88px);
-            line-height: 0.95;
+            position: relative;
 
-            margin-bottom: 25px;
+            font-size: clamp(48px, 8vw, 92px);
+            line-height: .98;
 
-            font-weight: 950;
+            font-weight: 900;
 
-            letter-spacing: -4px;
+            margin-bottom: 28px;
         }
 
         .hero h1 span {
-            color: #00ff88;
+            color: #00e5ff;
 
             text-shadow:
-                0 0 30px rgba(0,255,136,0.25);
+                0 0 30px rgba(0,229,255,.25);
         }
 
         .hero p {
-            max-width: 680px;
+            max-width: 700px;
 
             margin: auto;
 
-            color: #9caea4;
+            color: #929baa;
 
             font-size: 18px;
             line-height: 1.7;
@@ -386,1064 +190,915 @@
         .hero-buttons {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
+            gap: 14px;
 
             margin-top: 35px;
         }
 
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
+            display: inline-block;
 
-            padding: 14px 22px;
+            padding: 15px 24px;
 
-            border-radius: 13px;
+            border-radius: 10px;
 
-            font-weight: bold;
+            text-decoration: none;
 
-            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
 
-            transition: 0.25s;
+            transition: .3s;
         }
 
-        .btn-primary {
-            color: #001b0d;
-            background: #00ff88;
+        .primary {
+            background: #00e5ff;
+            color: #031015;
+        }
+
+        .primary:hover {
+            transform: translateY(-4px);
 
             box-shadow:
-                0 0 25px rgba(0,255,136,0.15);
+                0 12px 35px rgba(0,229,255,.25);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow:
-                0 0 35px rgba(0,255,136,0.30);
+        .secondary {
+            color: #dce1e8;
+
+            background: rgba(255,255,255,.025);
+
+            border: 1px solid #263140;
         }
 
-        .btn-secondary {
-            color: #e4eee8;
-
-            border: 1px solid rgba(255,255,255,0.12);
-
-            background: rgba(255,255,255,0.04);
+        .secondary:hover {
+            color: #00e5ff;
+            border-color: #00e5ff;
+            transform: translateY(-4px);
         }
 
-        .btn-secondary:hover {
-            border-color: rgba(0,255,136,0.30);
-            color: #00ff88;
-        }
+        /* ================= SECTION ================= */
 
-        /* ==============================
-           STATS
-        ============================== */
-
-        .stats {
-            display: grid;
-
-            grid-template-columns:
-                repeat(4, 1fr);
-
-            gap: 15px;
-
-            max-width: 1000px;
-
-            margin: 0 auto 80px;
-
-            padding: 0 6%;
-        }
-
-        .stat {
-            padding: 24px 15px;
-
-            text-align: center;
-
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 18px;
-
-            background:
-                linear-gradient(
-                    145deg,
-                    rgba(255,255,255,0.045),
-                    rgba(255,255,255,0.015)
-                );
-        }
-
-        .stat strong {
-            display: block;
-
-            margin-bottom: 7px;
-
-            color: #00ff88;
-
-            font-size: 28px;
-        }
-
-        .stat span {
-            color: #899991;
-            font-size: 13px;
-        }
-
-        /* ==============================
-           SECTIONS
-        ============================== */
-
-        section.content-section {
+        .section {
+            width: 90%;
             max-width: 1150px;
 
-            margin: 0 auto;
-
-            padding: 80px 6%;
+            margin: 0 auto 110px;
         }
 
-        .section-heading {
+        .section-head {
             margin-bottom: 35px;
         }
 
-        .section-heading small {
-            color: #00ff88;
+        .section-head small {
+            color: #00e5ff;
 
             font-size: 12px;
             font-weight: bold;
 
             letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .section-heading h2 {
-            margin-top: 8px;
+        .section-head h2 {
+            margin-top: 10px;
 
-            font-size: clamp(30px, 5vw, 48px);
+            font-size: 38px;
         }
 
-        .section-heading p {
-            max-width: 650px;
+        .section-head p {
+            margin-top: 10px;
 
-            margin-top: 12px;
-
-            color: #91a199;
-
-            line-height: 1.7;
+            color: #7f8998;
+            line-height: 1.6;
         }
 
-        /* ==============================
-           CARDS
-        ============================== */
+        /* ================= COURSES ================= */
 
-        .cards {
+        .courses {
             display: grid;
 
             grid-template-columns:
                 repeat(3, 1fr);
 
-            gap: 18px;
+            gap: 20px;
         }
 
-        .card {
-            padding: 25px;
+        .course {
+            position: relative;
 
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 20px;
+            padding: 27px;
+
+            min-height: 220px;
+
+            border-radius: 18px;
 
             background:
                 linear-gradient(
                     145deg,
-                    rgba(255,255,255,0.045),
-                    rgba(255,255,255,0.012)
+                    rgba(18,24,34,.96),
+                    rgba(9,13,20,.96)
                 );
 
-            transition: 0.3s;
+            border: 1px solid #202936;
+
+            text-decoration: none;
+            color: white;
+
+            overflow: hidden;
+
+            transition: .3s;
         }
 
-        .card:hover {
-            transform: translateY(-6px);
+        .course::after {
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+            height: 120px;
+
+            right: -50px;
+            bottom: -50px;
+
+            background: #00e5ff;
+
+            filter: blur(65px);
+
+            opacity: .08;
+        }
+
+        .course:hover {
+            transform: translateY(-7px);
 
             border-color:
-                rgba(0,255,136,0.28);
+                rgba(0,229,255,.45);
 
             box-shadow:
-                0 15px 40px rgba(0,0,0,0.25);
+                0 15px 40px rgba(0,0,0,.3);
         }
 
-        .card-icon {
-            width: 50px;
-            height: 50px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
+        .course-icon {
+            font-size: 35px;
             margin-bottom: 18px;
-
-            border-radius: 14px;
-
-            background: rgba(0,255,136,0.08);
-
-            font-size: 25px;
         }
 
-        .card h3 {
+        .course h3 {
+            font-size: 20px;
             margin-bottom: 10px;
         }
 
-        .card p {
-            color: #8e9d95;
+        .course p {
+            color: #858f9e;
 
             font-size: 14px;
-            line-height: 1.6;
+            line-height: 1.65;
         }
 
-        .card-link {
+        .course-link {
             display: inline-block;
 
             margin-top: 18px;
 
-            color: #00ff88;
+            color: #00e5ff;
 
-            font-size: 14px;
+            font-size: 13px;
             font-weight: bold;
         }
 
-        /* ==============================
-           FEATURE BLOCK
-        ============================== */
+        /* ================= FEATURES ================= */
 
-        .feature {
+        .features {
             display: grid;
 
             grid-template-columns:
-                1.1fr 0.9fr;
+                repeat(3, 1fr);
 
-            gap: 25px;
-
-            align-items: stretch;
+            gap: 20px;
         }
 
-        .terminal-preview {
-            min-height: 300px;
+        .feature {
+            padding: 30px;
 
-            padding: 20px;
+            border-radius: 18px;
 
-            border:
-                1px solid rgba(0,255,136,0.15);
+            background: rgba(255,255,255,.025);
 
-            border-radius: 20px;
-
-            background: #020403;
-
-            box-shadow:
-                inset 0 0 50px rgba(0,255,136,0.025);
+            border: 1px solid #202936;
         }
 
-        .terminal-top {
-            display: flex;
-            gap: 7px;
-
+        .feature-icon {
+            font-size: 32px;
             margin-bottom: 20px;
         }
 
-        .terminal-top i {
-            width: 10px;
-            height: 10px;
-
-            display: block;
-
-            border-radius: 50%;
-
-            background: #314039;
+        .feature h3 {
+            margin-bottom: 10px;
         }
 
-        .terminal-code {
-            color: #91a69a;
+        .feature p {
+            color: #818b9a;
 
-            font-family: monospace;
-            font-size: 13px;
-
-            line-height: 1.9;
+            font-size: 14px;
+            line-height: 1.7;
         }
 
-        .terminal-code .green {
-            color: #00ff88;
-        }
+        /* ================= SECRET ================= */
 
-        .terminal-code .white {
-            color: #e8f1eb;
-        }
+        .secret {
+            position: relative;
 
-        .feature-text {
-            padding: 30px;
+            padding: 55px;
 
-            border:
-                1px solid rgba(255,255,255,0.08);
-
-            border-radius: 20px;
+            border-radius: 22px;
 
             background:
-                rgba(255,255,255,0.025);
+                linear-gradient(
+                    135deg,
+                    rgba(0,229,255,.08),
+                    rgba(105,65,255,.07)
+                );
+
+            border: 1px solid rgba(0,229,255,.18);
+
+            overflow: hidden;
         }
 
-        .feature-text h3 {
-            margin-bottom: 15px;
+        .secret::before {
+            content: "";
 
-            font-size: 27px;
+            position: absolute;
+
+            width: 250px;
+            height: 250px;
+
+            right: -100px;
+            top: -100px;
+
+            background: #00e5ff;
+
+            filter: blur(120px);
+
+            opacity: .08;
         }
 
-        .feature-text p {
-            color: #91a199;
-
-            line-height: 1.8;
-        }
-
-        .feature-list {
-            list-style: none;
-
-            margin: 25px 0;
-        }
-
-        .feature-list li {
-            padding: 9px 0;
-
-            color: #cbd7d0;
-        }
-
-        .feature-list li::before {
-            content: "✓";
-
-            margin-right: 10px;
-
-            color: #00ff88;
-        }
-
-        /* ==============================
-           CTA
-        ============================== */
-
-        .cta {
-            margin-top: 60px;
-
-            padding: 50px 30px;
-
-            text-align: center;
-
-            border:
-                1px solid rgba(0,255,136,0.18);
-
-            border-radius: 25px;
-
-            background:
-                radial-gradient(
-                    circle at center,
-                    rgba(0,255,136,0.09),
-                    transparent 65%
-                ),
-                rgba(255,255,255,0.02);
-        }
-
-        .cta h2 {
-            font-size: clamp(28px, 5vw, 45px);
-
+        .secret h2 {
+            font-size: 36px;
             margin-bottom: 15px;
         }
 
-        .cta p {
-            max-width: 600px;
+        .secret h2 span {
+            color: #00e5ff;
+        }
 
-            margin: auto;
+        .secret p {
+            max-width: 650px;
 
-            color: #8f9e96;
+            color: #8d97a5;
 
             line-height: 1.7;
         }
 
-        .cta .btn {
+        .secret .btn {
             margin-top: 25px;
         }
 
-        /* ==============================
-           FOOTER
-        ============================== */
+        /* ================= TERMINAL ================= */
+
+        .terminal {
+            margin-top: 40px;
+
+            background: #090c11;
+
+            border: 1px solid #202936;
+
+            border-radius: 17px;
+
+            overflow: hidden;
+        }
+
+        .terminal-top {
+            height: 43px;
+
+            padding: 0 16px;
+
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            background: #10151d;
+
+            border-bottom: 1px solid #202936;
+        }
+
+        .circle {
+            width: 10px;
+            height: 10px;
+
+            border-radius: 50%;
+
+            background: #3b4552;
+        }
+
+        .terminal-title {
+            margin-left: 10px;
+
+            color: #667181;
+
+            font-size: 12px;
+        }
+
+        .terminal-body {
+            padding: 25px;
+
+            font-family: monospace;
+
+            color: #aeb8c6;
+
+            line-height: 1.9;
+
+            font-size: 13px;
+        }
+
+        .green {
+            color: #5cff9d;
+        }
+
+        .cyan {
+            color: #00e5ff;
+        }
+
+        .purple {
+            color: #b58cff;
+        }
+
+        /* ================= CTA ================= */
+
+        .cta {
+            text-align: center;
+
+            padding: 80px 20px;
+
+            border-top: 1px solid #151c26;
+            border-bottom: 1px solid #151c26;
+        }
+
+        .cta h2 {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .cta h2 span {
+            color: #00e5ff;
+        }
+
+        .cta p {
+            color: #858f9e;
+            margin-bottom: 28px;
+        }
+
+        /* ================= FOOTER ================= */
 
         footer {
-            margin-top: 70px;
-
-            padding: 35px 6%;
+            padding: 35px 20px;
 
             text-align: center;
 
-            border-top:
-                1px solid rgba(255,255,255,0.07);
+            color: #667181;
 
-            color: #65746c;
+            font-size: 13px;
         }
 
-        footer strong {
-            color: #00ff88;
+        footer span {
+            color: #00e5ff;
         }
 
-        /* ==============================
-           RESPONSIVE
-        ============================== */
+        /* ================= MOBILE ================= */
 
         @media (max-width: 850px) {
 
-            .cards {
-                grid-template-columns: 1fr 1fr;
+            nav {
+                display: none;
             }
 
-            .feature {
+            .menu {
+                display: block;
+            }
+
+            .courses,
+            .features {
                 grid-template-columns: 1fr;
             }
 
-            .stats {
-                grid-template-columns: 1fr 1fr;
-            }
-
-        }
-
-        @media (max-width: 560px) {
-
-            header {
-                padding: 0 18px;
-            }
-
             .hero {
-                padding:
-                    65px 20px
-                    75px;
-            }
-
-            .hero h1 {
-                letter-spacing: -2px;
+                min-height: 600px;
             }
 
             .hero p {
                 font-size: 15px;
             }
 
-            .cards {
-                grid-template-columns: 1fr;
+            .hero-buttons {
+                flex-direction: column;
+
+                width: 100%;
+                max-width: 300px;
+
+                margin-left: auto;
+                margin-right: auto;
             }
 
-            .stats {
-                padding: 0 20px;
+            .secret {
+                padding: 35px 25px;
             }
 
-            section.content-section {
-                padding:
-                    60px 20px;
+            .secret h2 {
+                font-size: 30px;
             }
 
-            .side-menu {
-                width: 285px;
+            .cta h2 {
+                font-size: 32px;
             }
-
         }
+
+        @media (max-width: 450px) {
+
+            header {
+                padding: 0 5%;
+            }
+
+            .hero h1 {
+                font-size: 52px;
+            }
+
+            .section-head h2 {
+                font-size: 30px;
+            }
+
+            .terminal-body {
+                padding: 18px;
+                font-size: 11px;
+            }
+        }
+
     </style>
 </head>
 
 <body>
 
-    <!-- BACKGROUND -->
 
-    <div class="background">
-        <div class="grid"></div>
-        <div class="glow one"></div>
-        <div class="glow two"></div>
+<!-- ================= NAVBAR ================= -->
+
+<header>
+
+    <div class="logo">
+        ⌘ Sirli Kodlar
     </div>
 
+    <nav id="nav">
 
-    <!-- HEADER -->
-
-    <header>
-
-        <a href="index.html" class="logo">
-
-            <div class="logo-icon">
-                &lt;/&gt;
-            </div>
-
-            Code<span>Forge</span>
-
+        <a href="index.html">
+            Bosh sahifa
         </a>
 
+        <a href="kurslar.html">
+            Kurslar
+        </a>
 
-        <button
-            class="menu-btn"
-            onclick="openMenu()"
-            aria-label="Menyu">
+        <a href="sirli.kodlar.html">
+            Sirli Kodlar
+        </a>
 
-            ☰
+        <a href="kurslar.html" class="nav-btn">
+            Boshlash →
+        </a>
 
-        </button>
+    </nav>
 
-    </header>
-
-
-    <!-- SIDE MENU -->
-
-    <div
-        class="overlay"
-        id="overlay"
-        onclick="closeMenu()">
+    <div class="menu" id="menu">
+        ☰
     </div>
 
+</header>
 
-    <aside
-        class="side-menu"
-        id="sideMenu">
 
-        <button
-            class="close-menu"
-            onclick="closeMenu()">
+<!-- ================= HERO ================= -->
 
-            ×
+<section class="hero">
 
-        </button>
+    <div>
 
+        <div class="badge">
 
-        <div class="menu-title">
-            CODEFORGE MENU
-        </div>
+            <span class="dot"></span>
 
-
-        <a
-            class="menu-link"
-            href="index.html">
-
-            🏠
-            <span>Bosh sahifa</span>
-
-        </a>
-
-
-        <a
-            class="menu-link"
-            href="kurslar.html">
-
-            📚
-            <span>Kurslar</span>
-
-        </a>
-
-
-        <a
-            class="menu-link"
-            href="sirli-kodlar.html">
-
-            🔐
-            <span>Sirli kodlar</span>
-
-        </a>
-
-
-        <a
-            class="menu-link"
-            href="terminal.html">
-
-            💻
-            <span>Terminal</span>
-
-        </a>
-
-
-        <a
-            class="menu-link"
-            href="loyihalar.html">
-
-            🚀
-            <span>Loyihalar</span>
-
-        </a>
-
-
-        <a
-            class="menu-link"
-            href="sertifikat.html">
-
-            🎓
-            <span>Sertifikat</span>
-
-        </a>
-
-
-        <a
-            class="menu-link"
-            href="haqida.html">
-
-            ℹ️
-            <span>Biz haqimizda</span>
-
-        </a>
-
-    </aside>
-
-
-    <!-- HERO -->
-
-    <main>
-
-        <section class="hero">
-
-            <div class="hero-content">
-
-                <div class="badge">
-
-                    <span class="status-dot"></span>
-
-                    Dasturlashni noldan boshlang
-
-                </div>
-
-
-                <h1>
-
-                    Kelajakni
-                    <br>
-
-                    <span>kod bilan</span>
-                    yarating.
-
-                </h1>
-
-
-                <p>
-
-                    CodeForge — Python, JavaScript, HTML,
-                    CSS, Java va boshqa dasturlash tillarini
-                    bosqichma-bosqich o‘rgatadigan zamonaviy
-                    koderlik maktabi.
-
-                </p>
-
-
-                <div class="hero-buttons">
-
-                    <a
-                        href="kurslar.html"
-                        class="btn btn-primary">
-
-                        🚀 Kurslarni boshlash
-
-                    </a>
-
-
-                    <a
-                        href="sirli-kodlar.html"
-                        class="btn btn-secondary">
-
-                        🔐 Sirli kodlar
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- STATS -->
-
-        <div class="stats">
-
-            <div class="stat">
-
-                <strong>10+</strong>
-
-                <span>Dasturlash tillari</span>
-
-            </div>
-
-
-            <div class="stat">
-
-                <strong>50+</strong>
-
-                <span>Amaliy darslar</span>
-
-            </div>
-
-
-            <div class="stat">
-
-                <strong>20+</strong>
-
-                <span>Loyihalar</span>
-
-            </div>
-
-
-            <div class="stat">
-
-                <strong>100%</strong>
-
-                <span>Amaliy o‘rganish</span>
-
-            </div>
+            Dasturlashni o‘rganish platformasi
 
         </div>
 
 
-        <!-- COURSES -->
+        <h1>
 
-        <section class="content-section">
+            Kod yozing.<br>
 
-            <div class="section-heading">
+            <span>Kelajak yarating.</span>
 
-                <small>LEARNING PATH</small>
+        </h1>
 
-                <h2>O‘rganishni boshlang</h2>
-
-                <p>
-
-                    Dasturlashni umuman bilmasangiz ham
-                    boshlashingiz mumkin. Har bir kurs
-                    oddiy tushunchalardan real loyihalargacha
-                    olib boradi.
-
-                </p>
-
-            </div>
-
-
-            <div class="cards">
-
-
-                <div class="card">
-
-                    <div class="card-icon">
-                        🐍
-                    </div>
-
-                    <h3>Python</h3>
-
-                    <p>
-
-                        Python asoslari, o‘zgaruvchilar,
-                        funksiyalar, sikllar va amaliy
-                        loyihalarni o‘rganing.
-
-                    </p>
-
-                    <a
-                        href="python.html"
-                        class="card-link">
-
-                        Kursni ko‘rish →
-
-                    </a>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-icon">
-                        🌐
-                    </div>
-
-                    <h3>HTML & CSS</h3>
-
-                    <p>
-
-                        Zamonaviy web-saytlarni noldan
-                        yaratishni o‘rganing.
-
-                    </p>
-
-                    <a
-                        href="html-css.html"
-                        class="card-link">
-
-                        Kursni ko‘rish →
-
-                    </a>
-
-                </div>
-
-
-                <div class="card">
-
-                    <div class="card-icon">
-                        ⚡
-                    </div>
-
-                    <h3>JavaScript</h3>
-
-                    <p>
-
-                        Web-saytlarga interaktivlik va
-                        kuchli funksiyalar qo‘shing.
-
-                    </p>
-
-                    <a
-                        href="javascript.html"
-                        class="card-link">
-
-                        Kursni ko‘rish →
-
-                    </a>
-
-                </div>
-
-
-            </div>
-
-        </section>
-
-
-        <!-- TERMINAL -->
-
-        <section class="content-section">
-
-            <div class="feature">
-
-
-                <div class="terminal-preview">
-
-                    <div class="terminal-top">
-
-                        <i></i>
-                        <i></i>
-                        <i></i>
-
-                    </div>
-
-
-                    <div class="terminal-code">
-
-                        <div>
-                            <span class="green">
-                                user@codeforge
-                            </span>:~$
-                            python main.py
-                        </div>
-
-                        <div>
-                            <span class="green">
-                                &gt;&gt;&gt;
-                            </span>
-                            print("Hello CodeForge!")
-                        </div>
-
-                        <div class="white">
-                            Hello CodeForge!
-                        </div>
-
-                        <br>
-
-                        <div>
-                            <span class="green">
-                                &gt;&gt;&gt;
-                            </span>
-                            print("Start coding...")
-                        </div>
-
-                        <div class="white">
-                            Start coding...
-                        </div>
-
-                        <br>
-
-                        <div>
-                            <span class="green">
-                                ✓ Program finished
-                            </span>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-                <div class="feature-text">
-
-                    <h3>
-                        💻 O‘z terminalingiz
-                    </h3>
-
-                    <p>
-
-                        Darslarni faqat o‘qib qolmaysiz.
-                        Kod yozing, tajriba qiling va
-                        dasturlashni amaliy tarzda o‘rganing.
-
-                    </p>
-
-
-                    <ul class="feature-list">
-
-                        <li>
-                            Kod yozish muhiti
-                        </li>
-
-                        <li>
-                            Amaliy topshiriqlar
-                        </li>
-
-                        <li>
-                            Foydali kodlar kutubxonasi
-                        </li>
-
-                        <li>
-                            Bosqichma-bosqich o‘rganish
-                        </li>
-
-                    </ul>
-
-
-                    <a
-                        href="terminal.html"
-                        class="btn btn-primary">
-
-                        Terminalni ochish
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SECRET LAB -->
-
-        <section class="content-section">
-
-            <div class="cta">
-
-                <h2>
-                    🔐 Sirli kodlar laboratoriyasi
-                </h2>
-
-                <p>
-
-                    CodeForge davomida yaratilgan
-                    kalkulyator, parol generator,
-                    o‘yinlar va boshqa foydali
-                    loyihalarni bir joyda toping.
-
-                </p>
-
-
-                <a
-                    href="sirli-kodlar.html"
-                    class="btn btn-primary">
-
-                    Sirli kodlarni ochish →
-
-                </a>
-
-            </div>
-
-        </section>
-
-
-        <!-- FINAL CTA -->
-
-        <section class="content-section">
-
-            <div class="cta">
-
-                <h2>
-                    Bugun boshlang. 🚀
-                </h2>
-
-                <p>
-
-                    Har bir professional dasturchi
-                    birinchi marta kod yozishdan boshlagan.
-
-                    Sizning birinchi qadamingiz bugun.
-
-                </p>
-
-
-                <a
-                    href="kurslar.html"
-                    class="btn btn-primary">
-
-                    Dasturlashni boshlash
-
-                </a>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-
-    <footer>
 
         <p>
 
-            © 2026
-            <strong>CodeForge</strong>
-            — Koderlik Maktabi
+            Sirli Kodlar orqali dasturlashni
+            noldan boshlab o‘rganing.
+            Python, Web, Java, C++, SQL va
+            boshqa texnologiyalarni amaliy tarzda o‘zlashtiring.
 
         </p>
 
-        <p style="margin-top:8px; font-size:12px;">
 
-            Learn • Code • Build • Repeat
+        <div class="hero-buttons">
 
+            <a
+                href="kurslar.html"
+                class="btn primary"
+            >
+                Kurslarni boshlash →
+            </a>
+
+            <a
+                href="sirli.kodlar.html"
+                class="btn secondary"
+            >
+                Sirli Kodlar
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= COURSES ================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <small>01 — Learning</small>
+
+        <h2>O‘rganishni boshlang</h2>
+
+        <p>
+            O‘zingizga kerakli texnologiyani tanlang
+            va dasturlash olamiga qadam qo‘ying.
         </p>
 
-    </footer>
+    </div>
 
 
-    <!-- JAVASCRIPT -->
-
-    <script>
-
-        const sideMenu =
-            document.getElementById("sideMenu");
-
-        const overlay =
-            document.getElementById("overlay");
+    <div class="courses">
 
 
-        function openMenu() {
+        <a href="python.html" class="course">
 
-            sideMenu.classList.add("active");
+            <div class="course-icon">🐍</div>
 
-            overlay.classList.add("active");
+            <h3>Python</h3>
 
-            document.body.style.overflow = "hidden";
+            <p>
+                Oson va kuchli Python tilini
+                noldan o‘rganing.
+            </p>
+
+            <span class="course-link">
+                Kursni ochish →
+            </span>
+
+        </a>
+
+
+        <a href="html-css.html" class="course">
+
+            <div class="course-icon">🌐</div>
+
+            <h3>HTML & CSS</h3>
+
+            <p>
+                Zamonaviy va chiroyli
+                web-saytlar yarating.
+            </p>
+
+            <span class="course-link">
+                Kursni ochish →
+            </span>
+
+        </a>
+
+
+        <a href="javascript.html" class="course">
+
+            <div class="course-icon">⚡</div>
+
+            <h3>JavaScript</h3>
+
+            <p>
+                Web-saytlarni interaktiv
+                va dinamik qiling.
+            </p>
+
+            <span class="course-link">
+                Kursni ochish →
+            </span>
+
+        </a>
+
+
+        <a href="java.html" class="course">
+
+            <div class="course-icon">☕</div>
+
+            <h3>Java</h3>
+
+            <p>
+                Java va OOP asoslarini
+                amaliy tarzda o‘rganing.
+            </p>
+
+            <span class="course-link">
+                Kursni ochish →
+            </span>
+
+        </a>
+
+
+        <a href="cpp.html" class="course">
+
+            <div class="course-icon">⚙️</div>
+
+            <h3>C++</h3>
+
+            <p>
+                Tezkor va kuchli dasturlar
+                yaratishni o‘rganing.
+            </p>
+
+            <span class="course-link">
+                Kursni ochish →
+            </span>
+
+        </a>
+
+
+        <a href="sql.html" class="course">
+
+            <div class="course-icon">🗄️</div>
+
+            <h3>SQL</h3>
+
+            <p>
+                Database va ma'lumotlar
+                bazasi bilan ishlang.
+            </p>
+
+            <span class="course-link">
+                Kursni ochish →
+            </span>
+
+        </a>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= FEATURES ================= -->
+
+<section class="section">
+
+    <div class="section-head">
+
+        <small>02 — Why us?</small>
+
+        <h2>Nega Sirli Kodlar?</h2>
+
+        <p>
+            Dasturlashni shunchaki o‘qib emas,
+            tushunib o‘rganish uchun.
+        </p>
+
+    </div>
+
+
+    <div class="features">
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🧠
+            </div>
+
+            <h3>Oddiy tushuntirish</h3>
+
+            <p>
+                Murakkab mavzularni imkon qadar
+                sodda va tushunarli qilib o‘rganasiz.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                💻
+            </div>
+
+            <h3>Amaliy kodlar</h3>
+
+            <p>
+                Nazariya bilan cheklanmaymiz.
+                Haqiqiy kodlar va loyihalar orqali
+                tajriba qilasiz.
+            </p>
+
+        </div>
+
+
+        <div class="feature">
+
+            <div class="feature-icon">
+                🚀
+            </div>
+
+            <h3>Doim rivojlanish</h3>
+
+            <p>
+                Dasturlashda eng muhim narsa —
+                muntazam o‘rganish va amaliyot.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- ================= SECRET ================= -->
+
+<section class="section">
+
+    <div class="secret">
+
+        <h2>
+            <span>Sirli</span> Kodlar olamiga kiring
+        </h2>
+
+        <p>
+            Oddiy darslardan tashqari maxsus
+            kodlar, dasturchilar sirlari,
+            challenge'lar va qiziqarli
+            texnikalarni kashf qiling.
+        </p>
+
+        <a
+            href="sirli.kodlar.html"
+            class="btn primary"
+        >
+            Sirlarni ochish →
+        </a>
+
+
+        <div class="terminal">
+
+            <div class="terminal-top">
+
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+
+                <span class="terminal-title">
+                    sirli-kodlar
+                </span>
+
+            </div>
+
+
+            <div class="terminal-body">
+
+                <div>
+                    <span class="green">
+                        user@coder
+                    </span>:~$
+                    <span class="cyan">
+                        ./start_learning
+                    </span>
+                </div>
+
+                <div>
+                    Loading courses...
+                </div>
+
+                <div class="green">
+                    ✓ Python loaded
+                </div>
+
+                <div class="green">
+                    ✓ Web Development loaded
+                </div>
+
+                <div class="green">
+                    ✓ JavaScript loaded
+                </div>
+
+                <br>
+
+                <div class="purple">
+                    Ready to code █
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ================= CTA ================= -->
+
+<section class="cta">
+
+    <h2>
+        Bugun <span>kod yozishni</span> boshlang.
+    </h2>
+
+    <p>
+        Birinchi loyihangizni yaratishga tayyormisiz?
+    </p>
+
+    <a
+        href="kurslar.html"
+        class="btn primary"
+    >
+        Kurslarni ko‘rish →
+    </a>
+
+</section>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    © 2026
+    <span>Sirli Kodlar</span>
+    — Dasturlashni o‘rganing. Kod yozing. Yaratib boring. 🚀
+
+</footer>
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script>
+
+    const menu = document.getElementById("menu");
+    const nav = document.getElementById("nav");
+
+    menu.addEventListener("click", () => {
+
+        if (nav.style.display === "flex") {
+
+            nav.style.display = "none";
+
+        } else {
+
+            nav.style.display = "flex";
+
+            nav.style.position = "absolute";
+            nav.style.top = "72px";
+            nav.style.left = "0";
+            nav.style.right = "0";
+
+            nav.style.padding = "20px";
+
+            nav.style.flexDirection = "column";
+
+            nav.style.background = "#090d14";
+
+            nav.style.borderBottom =
+                "1px solid #202936";
 
         }
 
+    });
 
-        function closeMenu() {
+</script>
 
-            sideMenu.classList.remove("active");
-
-            overlay.classList.remove("active");
-
-            document.body.style.overflow = "";
-
-        }
-
-
-        document.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key === "Escape") {
-
-                    closeMenu();
-
-                }
-
-            }
-        );
-
-    </script>
 
 </body>
-  </html>
+</html>

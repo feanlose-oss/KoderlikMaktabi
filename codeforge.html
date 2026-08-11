@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CodeForge | Sirli Kodlar</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #070a10;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* HEADER */
+
+        header {
+            height: 65px;
+            padding: 0 5%;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: #0b1018;
+            border-bottom: 1px solid #202936;
+        }
+
+        .logo {
+            font-size: 21px;
+            font-weight: 900;
+            color: #00e5ff;
+        }
+
+        .back {
+            color: #9ca6b5;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .back:hover {
+            color: #00e5ff;
+        }
+
+        /* TITLE */
+
+        .top {
+            padding: 25px 5% 15px;
+        }
+
+        .top h1 {
+            font-size: 30px;
+        }
+
+        .top h1 span {
+            color: #00e5ff;
+        }
+
+        .top p {
+            color: #7f8998;
+            margin-top: 7px;
+            font-size: 14px;
+        }
+
+        /* TOOLBAR */
+
+        .toolbar {
+            width: 90%;
+            margin: 10px auto;
+
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .run {
+            padding: 11px 20px;
+
+            background: #00e5ff;
+            color: #031015;
+
+            border-radius: 8px;
+
+            transition: .25s;
+        }
+
+        .run:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,229,255,.2);
+        }
+
+        .clear {
+            padding: 11px 17px;
+
+            color: #cbd2dc;
+
+            background: #151b24;
+
+            border: 1px solid #273140;
+
+            border-radius: 8px;
+        }
+
+        .status {
+            margin-left: auto;
+            color: #5cff9d;
+            font-size: 13px;
+        }
+
+        /* EDITOR */
+
+        .workspace {
+            width: 90%;
+            margin: 15px auto 50px;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+
+            gap: 15px;
+        }
+
+        .panel {
+            min-width: 0;
+
+            background: #0b1017;
+
+            border: 1px solid #202936;
+            border-radius: 14px;
+
+            overflow: hidden;
+        }
+
+        .panel-head {
+            height: 43px;
+
+            padding: 0 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            background: #111720;
+
+            border-bottom: 1px solid #202936;
+        }
+
+        .panel-title {
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .language {
+            color: #00e5ff;
+            font-size: 12px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 520px;
+
+            display: block;
+
+            resize: none;
+
+            outline: none;
+            border: none;
+
+            padding: 20px;
+
+            background: #080c12;
+            color: #d7dee8;
+
+            font-family: monospace;
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+        textarea::selection {
+            background: rgba(0,229,255,.25);
+        }
+
+        iframe {
+            width: 100%;
+            height: 520px;
+
+            display: block;
+
+            border: none;
+
+            background: white;
+        }
+
+        /* BOTTOM */
+
+        .info {
+            width: 90%;
+            margin: 0 auto 50px;
+
+            padding: 22px;
+
+            border: 1px solid #202936;
+            border-radius: 14px;
+
+            background: rgba(255,255,255,.02);
+        }
+
+        .info h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .info p {
+            color: #818b9a;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .tip {
+            color: #00e5ff;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 800px) {
+
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+
+            textarea,
+            iframe {
+                height: 420px;
+            }
+
+            .status {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            header {
+                padding: 0 5%;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .top h1 {
+                font-size: 26px;
+            }
+
+            .workspace,
+            .toolbar,
+            .info {
+                width: 94%;
+            }
+
+            textarea {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+<!-- HEADER -->
+
+<header>
+
+    <div class="logo">
+        ⚒ CodeForge
+    </div>
+
+    <a href="index.html" class="back">
+        ← Bosh sahifa
+    </a>
+
+</header>
+
+
+<!-- TITLE -->
+
+<section class="top">
+
+    <h1>
+        <span>Code</span>Forge
+    </h1>
+
+    <p>
+        Kod yozing, ishga tushiring va natijani darhol ko‘ring.
+    </p>
+
+</section>
+
+
+<!-- TOOLBAR -->
+
+<div class="toolbar">
+
+    <button class="run" onclick="runCode()">
+        ▶ Run
+    </button>
+
+    <button class="clear" onclick="clearCode()">
+        🗑 Tozalash
+    </button>
+
+    <div class="status" id="status">
+        ● Tayyor
+    </div>
+
+</div>
+
+
+<!-- WORKSPACE -->
+
+<main class="workspace">
+
+
+    <!-- EDITOR -->
+
+    <section class="panel">
+
+        <div class="panel-head">
+
+            <span class="panel-title">
+                📝 Code Editor
+            </span>
+
+            <span class="language">
+                HTML / CSS / JS
+            </span>
+
+        </div>
+
+        <textarea id="editor"><!DOCTYPE html>
+<html>
+
+<head>
+
+<style>
+
+body {
+    background: #111;
+    color: #00e5ff;
+    font-family: Arial;
+    text-align: center;
+    padding-top: 80px;
+}
+
+button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    background: #00e5ff;
+    cursor: pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Hello, CodeForge!</h1>
+
+<p>Bu mening birinchi kodim 🚀</p>
+
+<button onclick="hello()">
+    Bos
+</button>
+
+<script>
+
+function hello() {
+    alert("CodeForge ishlayapti! 🔥");
+}
+
+</script>
+
+</body>
+
+</html></textarea>
+
+    </section>
+
+
+    <!-- PREVIEW -->
+
+    <section class="panel">
+
+        <div class="panel-head">
+
+            <span class="panel-title">
+                👁 Preview
+            </span>
+
+            <span class="language">
+                Live Result
+            </span>
+
+        </div>
+
+        <iframe
+            id="preview"
+            sandbox="allow-scripts">
+        </iframe>
+
+    </section>
+
+
+</main>
+
+
+<!-- INFO -->
+
+<section class="info">
+
+    <h2>
+        ⚡ CodeForge qanday ishlaydi?
+    </h2>
+
+    <p>
+        Chap tomondagi editor ichiga HTML, CSS va JavaScript
+        kodlarini yozing. Keyin <span class="tip">Run</span>
+        tugmasini bosing. Natija o‘ng tomondagi Preview
+        oynasida chiqadi.
+    </p>
+
+</section>
+
+
+<script>
+
+    const editor =
+        document.getElementById("editor");
+
+    const preview =
+        document.getElementById("preview");
+
+    const status =
+        document.getElementById("status");
+
+
+    /* RUN CODE */
+
+    function runCode() {
+
+        const code = editor.value;
+
+        preview.srcdoc = code;
+
+        status.innerHTML =
+            "● Kod ishga tushdi";
+
+        status.style.color =
+            "#5cff9d";
+    }
+
+
+    /* CLEAR */
+
+    function clearCode() {
+
+        editor.value = "";
+
+        preview.srcdoc = "";
+
+        status.innerHTML =
+            "● Editor tozalandi";
+
+        status.style.color =
+            "#ffd166";
+    }
+
+
+    /* AUTO RUN */
+
+    editor.addEventListener(
+        "input",
+        function() {
+
+            status.innerHTML =
+                "● O‘zgarishlar saqlandi";
+
+            status.style.color =
+                "#00e5ff";
+
+        }
+    );
+
+
+    /* START */
+
+    runCode();
+
+</script>
+
+
+</body>
+</html>
